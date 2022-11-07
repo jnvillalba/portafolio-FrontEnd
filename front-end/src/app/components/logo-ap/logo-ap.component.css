@@ -1,3 +1,32 @@
 #logoAP{
-    width: auto;
+    width: 150px;
+    margin-left: 6px;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social{
+    margin-right: 0.5em;
+}
+
+@media (max-width: 575px){
+    
+
+    .container{
+        flex-direction: column;
+    }
+
+    .social{
+        display: flex;
+        justify-content: column;
+        align-items: center;
+        margin-bottom: 0.2em;
+    }
+    .social img{
+        margin-right: 0.2em;
+        
+    }
 }
