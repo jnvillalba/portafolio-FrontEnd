@@ -1,22 +1,25 @@
 <div class="row">
-    <div class="container">
-        
-        <div class="logoAP">
-            <img id="logoAP" 
-            src="../../../assets/logo-AP.png" 
-            alt="logo-AP"
-            >
-        </div>
-
-        <div class="social">
-            <app-social></app-social>
-            <button type="button" class="btn btn-outline-light pull-right"
-                (click)="login()"
-            >
-                login
-            </button>
-        </div>
-
+  <div class="container">
+    <div class="logoAP">
+      <img id="logoAP" src="../../../assets/logo-AP.png" alt="logo-AP" />
     </div>
 
+    <div class="social">
+      <app-social></app-social>
+      <button type="button" class="btn btn-outline-light pull-right"
+        (click)="login()"
+        *ngIf="!isLogged"
+        >
+        Login
+      </button>
+
+      
+      <button type="button" class="btn btn-outline-light pull-right"
+        (click)="onLogOut()"
+        *ngIf="isLogged"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
 </div>
