@@ -1,3 +1,4 @@
+import { interceptorProvider } from './service/interceptor-service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgCircleProgressModule } from 'ng-circle-progress';
@@ -43,7 +44,9 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    interceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
