@@ -1,25 +1,54 @@
 <div class="row" id="experience">
-    <h2>Experiencia Laboral</h2>
-    <div>
-        <ul>
-            <li class="card mat-card"> 
-                <div class="row">
-                    <div class="col-3 col-md-3 text-center">
-                        <a href="http://www.mselevatorparts.com/"> 
-                        <img class="logo-ms img-fluid" 
-                            src="../../../assets/ms-logo.svg"
-                            alt="log-MS" 
-                        >
-                        </a>
-                    </div>
-                <div class="col-9 col-md-9"> 
-                    <h2>MS Elevator Parts</h2> 
-                    <h3>Puesto</h3>
-                    <h5> 2017 - 2022 </h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quas modi eius dignissimos distinctio odit? Tempore, quaerat ducimus totam repellendus maxime quisquam, laboriosam maiores, dignissimos iusto reprehenderit voluptates magnam veniam.</p>
-                </div>
-            </div>
-            </li>
-        </ul>
-    </div>
+  <h2>Experiencia Laboral</h2>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-dark"
+            routerLink="/nuevaexp" *ngIf="isLogged">
+        Nueva Experiencia
+    </button>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <tbody>
+        <tr *ngFor="let Experiencia of experiencia">
+          <td>{{Experiencia.nombreE}}</td>
+          <td>{{Experiencia.descripcionE}}</td>
+          <td>editar</td>
+          <td>borrar</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+<!--
+<ul>
+      <li class="card mat-card">
+        <div class="row">
+          <div class="col-3 col-md-3 text-center">
+            <a href="http://www.mselevatorparts.com/">
+              <img
+                class="logo-ms img-fluid"
+                src="../../../assets/ms-logo.svg"
+                alt="log-MS"
+              />
+            </a>
+          </div>
+          <div class="col-9 col-md-9">
+            <h2>MS Elevator Parts</h2>
+            <h3>Puesto</h3>
+            <h5>2017 - 2022</h5>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+              quas modi eius dignissimos distinctio odit? Tempore, quaerat
+              ducimus totam repellendus maxime quisquam, laboriosam maiores,
+              dignissimos iusto reprehenderit voluptates magnam veniam.
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+
+
+ -->

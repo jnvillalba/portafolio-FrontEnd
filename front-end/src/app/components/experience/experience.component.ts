@@ -1,3 +1,6 @@
+import { Experiencia } from './../../model/experiencia';
+import { TokenService } from './../../service/token.service';
+import { ExperienciaService } from './../../service/experiencia.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExperienceComponent implements OnInit {
 
-  constructor() { }
+  experiencia: Experiencia[] = []
+
+  constructor(private sExperiencia: ExperienciaService, private sToken: TokenService) { }
+
+  isLogged = false
 
   ngOnInit(): void {
+    this.cargarExperiencia()
+    if(this.sToken.getToken()){
+      this.isLogged = true
+    }else{
+      this.isLogged = false
+    }
+  }
+
+  cargarExperiencia(): void{
+    this.sExperiencia.lista().subscribe(
+      data => {this.experiencia = data}
+    )
   }
 
 }
+
