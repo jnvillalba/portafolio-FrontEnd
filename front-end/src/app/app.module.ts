@@ -20,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NewExperienciaComponent } from './components/experience/new-experiencia/new-experiencia.component';
+import { EditExperienciaComponent } from './components/experience/edit-experiencia/edit-experiencia.component';
 
 
 @NgModule({
@@ -37,14 +38,15 @@ import { NewExperienciaComponent } from './components/experience/new-experiencia
     FooterComponent,
     LoginComponent,
     HomeComponent,
-    NewExperienciaComponent
+    NewExperienciaComponent,
+    EditExperienciaComponent
   ],
   imports: [
     BrowserModule,
     NgCircleProgressModule.forRoot({}),
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     interceptorProvider
