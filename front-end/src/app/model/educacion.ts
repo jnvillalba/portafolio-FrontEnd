@@ -1,5 +1,5 @@
-export class Experiencia {
-    id          : number
+export class Educacion {
+    id           : number
     nombreE      : string
     descripcionE : string
 
@@ -7,6 +7,4 @@ export class Experiencia {
         this.nombreE = nombreE
         this.descripcionE = descripcionE
     }
-
-
 }
