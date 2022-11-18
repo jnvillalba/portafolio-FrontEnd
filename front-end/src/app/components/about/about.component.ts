@@ -9,7 +9,8 @@ import { PersonaService } from './../../service/persona.service';
   styleUrls: ['./about.component.css'],
 })
 export class AboutComponent implements OnInit {
-  persona: persona = null;
+  persona: persona = null
+  // = new persona("","","","")
 
   constructor(
     public personaService: PersonaService,

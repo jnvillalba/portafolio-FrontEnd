@@ -9,7 +9,7 @@ import { Hys } from '../model/hys';
 })
 export class HysService {
 
-  URL = environment.URL + 'skill/';
+  URL = 'http://localhost:8080/skill/';
   
   constructor(private httpClient: HttpClient) { }
 

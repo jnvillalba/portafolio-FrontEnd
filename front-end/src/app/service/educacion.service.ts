@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EducacionService {
-  URL = environment.URL + 'educacion/';
+  URL = 'http://localhost:8080/educacion/';
 
   constructor(private httpClient: HttpClient ) { }
 
