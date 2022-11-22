@@ -2,6 +2,7 @@ import { persona } from 'src/app/model/persona.model';
 import { Component, OnInit } from '@angular/core';
 import { PersonaService } from 'src/app/service/persona.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'app-edit-about',
@@ -14,7 +15,8 @@ export class EditAboutComponent implements OnInit {
   constructor(
     private personaService: PersonaService,
     private activateRouter: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public imgService : ImageService
   ) { }
 
   ngOnInit(): void {
@@ -42,12 +44,11 @@ export class EditAboutComponent implements OnInit {
         this.router.navigate(['']);
       }
     );
-
-
+    
   }
 
   uploadImage($event: any){
-
+this.imgService.uploadImage($event)
     
   }
 
