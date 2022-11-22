@@ -7,7 +7,7 @@ import { ImageService } from 'src/app/service/image.service';
 @Component({
   selector: 'app-edit-about',
   templateUrl: './edit-about.component.html',
-  styleUrls: ['./edit-about.component.css']
+  styleUrls: ['./edit-about.component.css'],
 })
 export class EditAboutComponent implements OnInit {
   persona: persona = null;
@@ -16,8 +16,8 @@ export class EditAboutComponent implements OnInit {
     private personaService: PersonaService,
     private activateRouter: ActivatedRoute,
     private router: Router,
-    public imgService : ImageService
-  ) { }
+    public imgService: ImageService
+  ) {}
 
   ngOnInit(): void {
     const id = this.activateRouter.snapshot.params['id'];
@@ -32,8 +32,9 @@ export class EditAboutComponent implements OnInit {
     );
   }
 
-  onUpdate():void{
+  onUpdate(): void {
     const id = this.activateRouter.snapshot.params['id'];
+    this.persona.img = this.imgService.url
     this.personaService.update(id, this.persona).subscribe(
       (data) => {
         alert('Persona editada');
@@ -44,12 +45,11 @@ export class EditAboutComponent implements OnInit {
         this.router.navigate(['']);
       }
     );
-    
   }
 
-  uploadImage($event: any){
-this.imgService.uploadImage($event)
-    
+  uploadImage($event: any) {
+    const id = this.activateRouter.snapshot.params['id'];
+    const name = "perfil_" + id
+    this.imgService.uploadImage($event, name);
   }
-
 }
