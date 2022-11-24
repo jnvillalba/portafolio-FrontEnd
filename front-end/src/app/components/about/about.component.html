@@ -1,35 +1,27 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-    <img
-      class="img-fluid"
-      id="profile-image"
-      src="../../../assets/profile-img.jpg"
-      alt="perfilIMG src={{persona.img}}"
-    />
+  <div class="card-body position-relative">
+    <button
+      type="button"
+      class="btn btn-right btn-primary"
+      routerLink="/editacercade/1"
+      *ngIf="isLogged"
+    >
+      <i class="bi bi-pencil"></i>
+    </button>
+    <div class="img-profile position-absolute top-0 start-50 translate-middle">
+      <img src="{{ persona.img}}" class="animate" alt="img-profile" />
+    </div>
+    <div class="row mt-5">
+      <div class="col text-center">
+        <h3>{{ persona.nombre }} {{ persona.apellido}}</h3>
+        <p>Full Stack Developer Jr</p>
+      </div>
+      <div class="d-flex acercade">
+        <div class="col text-center">
+          <p>{{ persona.descripcion }}</p>
+        </div>
+      </div>
+      <div></div>
+    </div>
   </div>
-
-  <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-    <h1 id="nombre">
-      {{ persona.nombre }}
-      {{ persona.apellido }}
-    </h1>
-    <p>Full Stack Developer Jr</p>
-  </div>
-
-  <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 acercade" >
-    <span>
-      <h2>Acerca de mí</h2>
-      <p>{{ persona.descripcion }}</p>
-    </span>
-  </div>
-  <div class="button">
-  <button
-    type="button"
-    class="btn btn-primary"
-    routerLink="/editacercade/1"
-    *ngIf="isLogged"
-  >
-    Editar Persona
-  </button>
-</div>
 </div>
