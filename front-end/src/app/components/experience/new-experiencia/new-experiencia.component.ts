@@ -1,4 +1,5 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ImageService } from 'src/app/service/image.service';
 import { Component, OnInit } from '@angular/core';
 import { ExperienciaService } from 'src/app/service/experiencia.service';
 import { Experiencia } from 'src/app/model/experiencia';
@@ -17,7 +18,9 @@ export class NewExperienciaComponent implements OnInit {
 
   constructor(
     private sExperiencia: ExperienciaService,
-    private router: Router
+    private activateRouter: ActivatedRoute,
+    private router: Router,
+    public imgService: ImageService
   ) {}
 
   ngOnInit(): void {}
@@ -35,5 +38,11 @@ export class NewExperienciaComponent implements OnInit {
         this.router.navigate(['']);
       }
     );
+  }
+
+  uploadImage($event: any) {
+    const id = this.activateRouter.snapshot.params['id'];
+    const name = "logo_ExpLab" + id
+    this.imgService.uploadImage($event, name);
   }
 }
