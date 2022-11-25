@@ -1,74 +1,47 @@
 <div class="row" id="experience">
-  <h2>Experiencia Laboral</h2>
-  <div class="col-lg-2">
+  <div class="layout position-relative">
+    <h2>Experiencia Laboral</h2>
     <button
       type="button"
-      class="btn btn-dark"
+      class="btn btn-dark btn-right"
       routerLink="/nuevaexp"
       *ngIf="isLogged"
     >
       Nueva Experiencia
     </button>
   </div>
-
-  <div class="row">
-    <table class="table">
-      <tbody>
-        <tr *ngFor="let Experiencia of experiencia">
-          <td>{{ Experiencia.nombreE }}</td>
-          <td>{{ Experiencia.descripcionE }}</td>
-          <td *ngIf="isLogged">
-            <button
-              class="btn btn-light"
-              routerLink="/editexp/{{ Experiencia.id }}"
-            >
-              <i class="bi bi-pencil"></i>
-              Editar
-            </button>
-          </td>
-          <td *ngIf="isLogged">
-            <button
-              class="btn btn-danger"
-              (click)="delete(Experiencia.id)"
-            >
-              <i class="bi bi-trash3"></i>
-              Borrar
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!--
-<ul>
-      <li class="card mat-card">
-        <div class="row">
-          <div class="col-3 col-md-3 text-center">
-            <a href="http://www.mselevatorparts.com/">
-              <img
-                class="logo-ms img-fluid"
-                src="../../../assets/ms-logo.svg"
-                alt="log-MS"
-              />
-            </a>
-          </div>
-          <div class="col-9 col-md-9">
-            <h2>MS Elevator Parts</h2>
-            <h3>Puesto</h3>
-            <h5>2017 - 2022</h5>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-              quas modi eius dignissimos distinctio odit? Tempore, quaerat
-              ducimus totam repellendus maxime quisquam, laboriosam maiores,
-              dignissimos iusto reprehenderit voluptates magnam veniam.
-            </p>
-          </div>
+  <ul *ngFor="let Experiencia of experiencia">
+    <li class="card mat-card">
+      <div class="row">
+        <div class="col-3 col-md-3 text-center">
+          <img class="logo-exp img-fluid" src="" alt="logo-Experiencia" />
         </div>
-      </li>
-    </ul>
+        <div class="col-9 col-md-9">
+          <h2>{{ Experiencia.nombreE }}</h2>
+          <h3>Puesto</h3>
+          <h5>2017 - 2022</h5>
+          <p>
+            {{ Experiencia.descripcionE }}
+          </p>
+        </div>
+        <div *ngIf="isLogged">
+          <button
+            class="btn btn-outline-secondary btn-right "
+            routerLink="/editexp/{{ Experiencia.id }}"
+          >
+            <i class="bi bi-pencil"></i>
+            Editar
+          </button>
 
-
-
- -->
+          <button
+            class="btn btn-danger btn-right"
+            (click)="delete(Experiencia.id)"
+          >
+            <i class="bi bi-trash3"></i>
+            Borrar
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
