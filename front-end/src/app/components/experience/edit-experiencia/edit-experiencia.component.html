@@ -1,4 +1,6 @@
-<div class="container" *ngIf="expLab">
+<section class="vh-100">
+
+<div class="container-fluid h-custom" *ngIf="expLab">
     <div class="row">
       <div>
         <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
@@ -33,4 +35,4 @@
       </div>
     </div>
   </div>
-  
+</section>

@@ -2,13 +2,8 @@
     padding: 20px;
 }
 
-#education{
-    background-color: #B3CDE0;
-}
-
-#logo-unq,#logo-mg{
-    margin-top: 20px;
-    
+.logo{
+    margin-top: 20px; 
 }
 
 .mat-card{
@@ -19,4 +14,17 @@
 
 .card {
     border-radius: 10px;
+}
+
+.btn-right {
+    float: right;
+    margin-left: 10px;
+}
+
+.layout {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
