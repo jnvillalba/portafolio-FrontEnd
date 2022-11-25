@@ -1,6 +1,8 @@
-section{
-    background-color: #3D6F95;;
-}
+
 .h-custom {
     height: 100%;
+}
+
+.card{
+    border-color: black;
 }
