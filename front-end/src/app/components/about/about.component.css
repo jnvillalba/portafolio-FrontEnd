@@ -11,19 +11,6 @@ div {
   margin-top: 10%;
 }
 
-/*
-{*
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-*/
 .animate {
   transition: all 0.5s ease;
 }
