@@ -15,12 +15,12 @@
     <li class="card mat-card">
       <div class="row">
         <div class="col-3 col-md-3 text-center">
-          <img class="logo-exp img-fluid" src="" alt="logo-Experiencia" />
+          <img class="logo-exp img-fluid" src="{{ Experiencia.img}}" alt="logo-Exp" />
         </div>
         <div class="col-9 col-md-9">
           <h2>{{ Experiencia.nombreE }}</h2>
-          <h3>Puesto</h3>
-          <h5>2017 - 2022</h5>
+          <h3>{{ Experiencia.puesto}}</h3>
+          <h5>{{ Experiencia.periodo}}</h5>
           <p>
             {{ Experiencia.descripcionE }}
           </p>
