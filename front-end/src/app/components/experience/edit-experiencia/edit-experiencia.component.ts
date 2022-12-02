@@ -53,7 +53,7 @@ export class EditExperienciaComponent implements OnInit {
 
   uploadImage($event: any) {
     const id = this.activateRouter.snapshot.params['id'];
-    const name = "img-exp-" + id
+    const name = "experience_" + id
     this.imgService.uploadImage($event, name);
   }
 }
