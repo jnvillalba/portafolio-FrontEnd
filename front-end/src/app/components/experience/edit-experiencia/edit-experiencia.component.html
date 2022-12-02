@@ -1,90 +1,93 @@
-<div class="container rounded bg-white mt-5 mb-5">
+<div class="container rounded bg-white mt-5 mb-5" *ngIf="expLab">
   <div class="row">
-    <div class="col-md-3 ">
+    <div class="col-md-3">
       <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-        <img class="rounded-circle mt-5 border" width="150px" [src]="expLab.img" alt="img-exp-{{expLab.id}}" />
-        <span
-          class="font-weight-bold"
-        ></span
-        ><span class="text-black-50"></span><span> </span>
+        <img
+          class="rounded-circle mt-5 border"
+          width="150px"
+          [src]="imgService.url"
+          alt="img-exp-{{ expLab.id }}"
+        />
+        <span class="font-weight-bold"></span><span class="text-black-50"></span
+        ><span> </span>
       </div>
     </div>
-    <div class="col-md-9 ">
+    <div class="col-md-9">
       <div class="p-3 py-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h4 class="text-right">Editar Experiencia</h4>
         </div>
 
-        
-          <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
-            <div class="labels">
-              <div class="form-group labels">
-                <label for="nombreE">Nombre de la empresa</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="nombreE"
-                  name="nombreE"
-                  [(ngModel)]="expLab.nombreE"
-                  required
-                />
-              </div>
-            
-              <div class="form-group labels">
-                <label for="descripcionE">Descripcion</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="descripcionE"
-                  name="descripcionE"
-                  [(ngModel)]="expLab.descripcionE"
-                  required
-                />
-              </div>
-
-              <div class="form-group labels">
-                <label for="periodo">Periodo</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="periodo"
-                  name="periodo"
-                  [(ngModel)]="expLab.periodo"
-                  required
-                />
-              </div>
-
-              <div class="form-group labels">
-                <label for="puesto">Puesto</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="puesto"
-                  name="puesto"
-                  [(ngModel)]="expLab.puesto"
-                  required
-                />
-              </div>
-
-              <div class="form-img labels">
-                <label for="img">Logo</label>
-                <input
-                  type="file"
-                  class="form-control"
-                  id="img"
-                  name="img"
-                  [(ngModel)]="expLab.img"
-                  (change)="uploadImage($event)"
-                  accept=".jpg, .jpeg, .png"
-                />
-              </div>
+        <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+          <div class="labels">
+            <div class="form-group labels">
+              <label for="nombreE">Nombre de la empresa</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombreE"
+                name="nombreE"
+                [(ngModel)]="expLab.nombreE"
+                required
+              />
             </div>
-          
-            <div class="mt-5 text-center">
-              <button class="btn btn-outline-secondary">Actualizar Experiencia</button>
+
+            <div class="form-group labels">
+              <label for="descripcionE">Descripcion</label>
+              <input
+                type="text"
+                class="form-control"
+                id="descripcionE"
+                name="descripcionE"
+                [(ngModel)]="expLab.descripcionE"
+                required
+              />
             </div>
-          </form>
-        
+
+            <div class="form-group labels">
+              <label for="periodo">Periodo</label>
+              <input
+                type="text"
+                class="form-control"
+                id="periodo"
+                name="periodo"
+                [(ngModel)]="expLab.periodo"
+                required
+              />
+            </div>
+
+            <div class="form-group labels">
+              <label for="puesto">Puesto</label>
+              <input
+                type="text"
+                class="form-control"
+                id="puesto"
+                name="puesto"
+                [(ngModel)]="expLab.puesto"
+                required
+              />
+            </div>
+
+            <div class="form-img labels">
+              <label for="img">Logo</label>
+              <input
+                type="file"
+                class="form-control"
+                id="img"
+                name="img"
+                [(ngModel)]="expLab.img"
+                (change)="uploadImage($event)"
+                accept=".jpg, .jpeg, .png"
+              />
+            </div>
+          </div>
+
+          <div class="mt-5 text-center">
+            <button class="btn btn-outline-secondary">
+              Actualizar Experiencia
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
