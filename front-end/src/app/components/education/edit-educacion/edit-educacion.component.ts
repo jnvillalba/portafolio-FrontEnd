@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { EducacionService } from 'src/app/service/educacion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
+import { Storage, ref, uploadBytes, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit-educacion',
@@ -11,12 +12,14 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class EditEducacionComponent implements OnInit {
   educ: Educacion = null;
+  url: string = ""
 
   constructor(
     private sEducacion: EducacionService,
     private activateRouter: ActivatedRoute,
     private router: Router,
-    public imgService: ImageService
+    public imgService: ImageService,
+    private storage: Storage
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +37,7 @@ export class EditEducacionComponent implements OnInit {
 
   onUpdate(): void {
     const id = this.activateRouter.snapshot.params['id'];
-    this.educ.img = this.imgService.url
+    this.educ.img = this.url
     this.sEducacion.update(id, this.educ).subscribe(
       (data) => {
         alert('Educacion editada');
@@ -50,6 +53,26 @@ export class EditEducacionComponent implements OnInit {
   uploadImage($event: any) {
     const id = this.activateRouter.snapshot.params['id'];
     const name = "education_" + id
-    this.imgService.uploadImage($event, name);
+    this.onUploadImage($event, name);
+  }
+
+  public onUploadImage($event:any, name: string) {
+    const file = $event.target.files[0]
+    const imgRef = ref(this.storage,`imagen/`+ name) 
+    uploadBytes(imgRef, file)
+    .then(response => {this.getImages()})
+    .catch(error => console.log(error))
+  }
+
+  getImages(){
+    const imgsRef = ref(this.storage,`imagen`) 
+    const id = this.activateRouter.snapshot.params['id'];
+    list(imgsRef)
+    .then(async response => {
+      this.url = await getDownloadURL(response.items.find(x => x.name === "education_"+id ))
+        console.log("edit-exp-URL:" + this.url)
+      }
+    )
+    .catch(error => console.log(error))
   }
 }
