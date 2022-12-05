@@ -55,17 +55,12 @@ export class EditExperienciaComponent implements OnInit {
   uploadImage($event: any) {
     const id = this.activateRouter.snapshot.params['id'];
     const name = "experience_" + id
-    this.onUploadImage($event, name);
-  }
-  public onUploadImage($event:any, name: string) {
-    const file = $event.target.files[0]
-    const imgRef = ref(this.storage,`imagen/`+ name) 
-    uploadBytes(imgRef, file)
-    .then(response => {this.getImages()})
-    .catch(error => console.log(error))
+    this.imgService.uploadImage($event, name);
+    this.getImagen()
   }
 
-  getImages(){
+
+  getImagen(){
     const imgsRef = ref(this.storage,`imagen`) 
     const id = this.activateRouter.snapshot.params['id'];
     list(imgsRef)
@@ -74,6 +69,6 @@ export class EditExperienciaComponent implements OnInit {
         console.log("edit-exp-URL:" + this.url)
       }
     )
-    .catch(error => console.log(error))
+    .catch(error => console.log("No se pudo encontrar la imagen"))
   }
 }

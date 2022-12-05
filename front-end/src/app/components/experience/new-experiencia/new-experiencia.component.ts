@@ -9,13 +9,14 @@ import { Experiencia } from 'src/app/model/experiencia';
   templateUrl: './new-experiencia.component.html',
   styleUrls: ['./new-experiencia.component.css'],
 })
+
 export class NewExperienciaComponent implements OnInit {
   nombreE: string = '';
   descripcionE: string = '';
-  puesto       : string = '';
-  periodo      : string = '';
-  img          : string = '';
-
+  puesto: string = '';
+  periodo: string = '';
+  img: string = '';
+  
   constructor(
     private sExperiencia: ExperienciaService,
     private activateRouter: ActivatedRoute,
@@ -26,8 +27,13 @@ export class NewExperienciaComponent implements OnInit {
   ngOnInit(): void {}
 
   onCreate(): void {
-    const exp = new Experiencia(this.nombreE, this.descripcionE, this.puesto,
-      this.periodo, this.img);
+    const exp = new Experiencia(
+      this.nombreE,
+      this.descripcionE,
+      this.puesto,
+      this.periodo,
+      this.img
+    );
     this.sExperiencia.save(exp).subscribe(
       (data) => {
         alert('Experiencia añadida');
@@ -42,7 +48,7 @@ export class NewExperienciaComponent implements OnInit {
 
   uploadImage($event: any) {
     const id = this.activateRouter.snapshot.params['id'];
-    const name = "experience_" + id
+    const name = 'experience_' + id;
     this.imgService.uploadImage($event, name);
   }
 }
