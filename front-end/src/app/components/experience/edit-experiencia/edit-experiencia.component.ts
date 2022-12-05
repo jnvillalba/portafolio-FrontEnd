@@ -1,9 +1,10 @@
+import { Observable } from 'rxjs';
 import { Experiencia } from './../../../model/experiencia';
 import { Component, OnInit } from '@angular/core';
 import { ExperienciaService } from 'src/app/service/experiencia.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
-import { Storage, ref, uploadBytes, list, getDownloadURL } from '@angular/fire/storage';
+import { Storage, ref, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit-experiencia',
@@ -15,6 +16,9 @@ export class EditExperienciaComponent implements OnInit {
 
   expLab: Experiencia = null;
   url: string = ""
+
+  uploadProgress: Observable<number>
+
 
   constructor(
     private sExperiencia: ExperienciaService,
@@ -40,6 +44,7 @@ export class EditExperienciaComponent implements OnInit {
   onUpdate(): void {
     const id = this.activateRouter.snapshot.params['id']
     this.expLab.img = this.url
+    
     this.sExperiencia.update(id, this.expLab).subscribe(
       (data) => {
         alert('Experiencia editada');
