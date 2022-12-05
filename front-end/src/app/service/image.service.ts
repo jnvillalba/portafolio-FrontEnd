@@ -9,7 +9,7 @@ export class ImageService {
   url: string = ""
 
   constructor(
-    private storage: Storage
+    public storage: Storage
   ) { }
 
   public uploadImage($event:any, name: string) {

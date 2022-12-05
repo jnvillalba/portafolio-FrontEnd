@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PersonaService } from 'src/app/service/persona.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
+import { Storage, ref, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit-about',
@@ -11,6 +12,7 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class EditAboutComponent implements OnInit {
   persona: persona = null;
+  url: string = ""
 
   constructor(
     private personaService: PersonaService,
@@ -34,7 +36,7 @@ export class EditAboutComponent implements OnInit {
 
   onUpdate(): void {
     const id = this.activateRouter.snapshot.params['id'];
-    this.persona.img = this.imgService.url
+    this.persona.img = this.url
     this.personaService.update(id, this.persona).subscribe(
       (data) => {
         alert('Persona editada');
@@ -51,5 +53,19 @@ export class EditAboutComponent implements OnInit {
     const id = this.activateRouter.snapshot.params['id'];
     const name = "perfil_" + id
     this.imgService.uploadImage($event, name);
+    this.getImagen()
   }
+
+  getImagen(){
+    const imgsRef = ref(this.imgService.storage,`imagen`) 
+    const id = this.activateRouter.snapshot.params['id'];
+    list(imgsRef)
+    .then(async response => {
+      this.url = await getDownloadURL(response.items.find(x => x.name === "perfil_"+id ))
+        console.log("edit-profile-URL:" + this.url)
+      }
+    )
+    .catch(error => console.log("No se pudo encontrar la imagen"))
+  }
+
 }
