@@ -3,6 +3,7 @@ import { Proyecto } from 'src/app/model/proyecto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
 import { ProyectoService } from 'src/app/service/proyecto.service';
+import {ref, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit-project',
@@ -12,7 +13,7 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
 export class EditProjectComponent implements OnInit {
 
   proyecto: Proyecto = null;
-
+  url: string = ""
 
   constructor(
     private sProyecto: ProyectoService,
@@ -36,7 +37,7 @@ export class EditProjectComponent implements OnInit {
 
   onUpdate(): void {
     const id = this.activateRouter.snapshot.params['id']
-    this.proyecto.img = this.imgService.url
+    this.proyecto.img = this.url
     this.sProyecto.update(id, this.proyecto).subscribe(
       (data) => {
         alert('Proyecto editado');
@@ -53,6 +54,19 @@ export class EditProjectComponent implements OnInit {
     const id = this.activateRouter.snapshot.params['id'];
     const name = "proyecto_" + id
     this.imgService.uploadImage($event, name);
+    this.getImagen();
+  }
+
+  getImagen(){
+    const imgsRef = ref(this.imgService.storage,`imagen`) 
+    const id = this.activateRouter.snapshot.params['id'];
+    list(imgsRef)
+    .then(async response => {
+      this.url = await getDownloadURL(response.items.find(x => x.name === "proyecto_"+id ))
+        console.log("edit-educ-URL:" + this.url)
+      }
+    )
+    .catch(error => console.log(error))
   }
 }
 

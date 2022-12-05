@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { EducacionService } from 'src/app/service/educacion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
-import { Storage, ref, uploadBytes, list, getDownloadURL } from '@angular/fire/storage';
+import {ref, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit-educacion',
@@ -18,8 +18,7 @@ export class EditEducacionComponent implements OnInit {
     private sEducacion: EducacionService,
     private activateRouter: ActivatedRoute,
     private router: Router,
-    public imgService: ImageService,
-    private storage: Storage
+    private imgService: ImageService,
   ) {}
 
   ngOnInit(): void {
@@ -53,24 +52,18 @@ export class EditEducacionComponent implements OnInit {
   uploadImage($event: any) {
     const id = this.activateRouter.snapshot.params['id'];
     const name = "education_" + id
-    this.onUploadImage($event, name);
+    this.imgService.uploadImage($event, name);
+    this.getImagen()
   }
 
-  public onUploadImage($event:any, name: string) {
-    const file = $event.target.files[0]
-    const imgRef = ref(this.storage,`imagen/`+ name) 
-    uploadBytes(imgRef, file)
-    .then(response => {this.getImages()})
-    .catch(error => console.log(error))
-  }
 
-  getImages(){
-    const imgsRef = ref(this.storage,`imagen`) 
+  getImagen(){
+    const imgsRef = ref(this.imgService.storage,`imagen`) 
     const id = this.activateRouter.snapshot.params['id'];
     list(imgsRef)
     .then(async response => {
       this.url = await getDownloadURL(response.items.find(x => x.name === "education_"+id ))
-        console.log("edit-exp-URL:" + this.url)
+        console.log("edit-educ-URL:" + this.url)
       }
     )
     .catch(error => console.log(error))

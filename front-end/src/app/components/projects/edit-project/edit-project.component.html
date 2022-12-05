@@ -79,10 +79,20 @@
                   />
                 </div>
               </div>
-            
+
               <div class="mt-5 text-center">
-                <button class="btn btn-outline-secondary">Actualizar Proyecto</button>
+                <button *ngIf="url ; else btnDisabled"
+                class="btn btn-success">
+                  Actualizar Proyecto
+                </button>
               </div>
+    
+              <ng-template #btnDisabled>
+                <button disabled="true" class="btn btn-outline-secondary">
+                  Actualizar Proyecto
+                </button>
+    
+              </ng-template>
             </form>
           
         </div>

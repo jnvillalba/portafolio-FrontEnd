@@ -11,39 +11,44 @@
     </button>
   </div>
   <div>
-  <ul *ngFor="let Proyecto of proyecto">
-    <li class="card mat-card">
-      <div class="row">
-        <div class="col-3 col-md-3 text-center">
-          <img class="logo-exp img-fluid" src="{{ Proyecto.img}}" alt="img-proj-{{Proyecto.id}}" />
-        </div>
-        <div class="col-9 col-md-9">
-          <a href="{{ Proyecto.link }}">
-          <h2>{{ Proyecto.nombreP }}</h2>
-        </a>
-          <h4>{{ Proyecto.fecha}}</h4>
-          <p>
-            {{ Proyecto.descripcionP }}
-          </p>
-        </div>
-        <div *ngIf="isLogged">
-          <button
-            class="btn btn-outline-secondary btn-right "
-            routerLink="/editProject/{{ Proyecto.id }}"
-          >
-            <i class="bi bi-pencil"></i>
-            Editar
-          </button>
+    <ul *ngFor="let Proyecto of proyecto">
+      <li class="card mat-card">
+        <div class="row">
+          <div class="col-3 col-md-3 text-center">
+            <img
+              class="logo-exp img-fluid"
+              [src]="Proyecto.img"
+              alt="img-proj-{{ Proyecto.id }}"
+            />
+          </div>
+          <div class="col-9 col-md-9">
+            <a href="{{ Proyecto.link }}">
+              <h2>{{ Proyecto.nombreP }}</h2>
+            </a>
+            <h4>{{ Proyecto.fecha }}</h4>
+            <p>
+              {{ Proyecto.descripcionP }}
+            </p>
+          </div>
+          <div *ngIf="isLogged">
+            <button
+              class="btn btn-outline-secondary btn-right"
+              routerLink="/editProject/{{ Proyecto.id }}"
+            >
+              <i class="bi bi-pencil"></i>
+              Editar
+            </button>
 
-          <button
-            class="btn btn-danger btn-right"
-            (click)="delete(Proyecto.id)"
-          >
-            <i class="bi bi-trash3"></i>
-            Borrar
-          </button>
+            <button
+              class="btn btn-danger btn-right"
+              (click)="delete(Proyecto.id)"
+            >
+              <i class="bi bi-trash3"></i>
+              Borrar
+            </button>
+          </div>
         </div>
-      </div>
-    </li>
-  </ul>
+      </li>
+    </ul>
+  </div>
 </div>
