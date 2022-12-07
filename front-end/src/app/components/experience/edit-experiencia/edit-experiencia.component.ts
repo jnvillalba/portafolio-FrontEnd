@@ -17,7 +17,7 @@ export class EditExperienciaComponent implements OnInit {
   expLab: Experiencia = null;
   url: string = ""
 
-  uploadProgress: Observable<number>
+  url2: Observable<string>
 
 
   constructor(

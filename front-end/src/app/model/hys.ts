@@ -1,10 +1,12 @@
 export class Hys {
-    id: number;
-    nombre: string;
-    porcentaje: number;
+    id          : number;
+    nombre      : string;
+    porcentaje  : number;
+    img         : string 
 
-    constructor(nombre:string, porcentaje: number){
+    constructor(nombre:string, porcentaje: number, img: string){
         this.nombre = nombre;
         this.porcentaje = porcentaje;
+        this.img = img
     }
 }

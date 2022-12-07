@@ -1,33 +1,76 @@
-<section class="vh-100">
-<div class="container" *ngIf="skill">
+<div class="container rounded bg-white mt-5 mb-5" *ngIf="skill">
   <div class="row">
-    <div>
-      <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
-        <div class="form-group">
-          <label for="nombre">Nombre de la Skill</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nombre"
-            name="nombre"
-            [(ngModel)]="skill.nombre"
-            required
-          />
+    <div class="col-md-3">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <img
+          class="mt-5 border"
+          width="150px"
+          [src]="this.url"
+          alt="img-hys-{{ skill.id }}"
+        />
+        <span class="font-weight-bold"></span><span class="text-black-50"></span
+        ><span> </span>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">Editar Experiencia</h4>
         </div>
-        <div class="form-group">
-          <label for="porcentaje">Ingrese el porcentaje</label>
-          <input
-            type="text"
-            class="form-control"
-            id="porcentaje"
-            name="porcentaje"
-            [(ngModel)]="skill.porcentaje"
-            required
-          />
-        </div>
-        <button class="btn btn-primary">Actualizar</button>
-      </form>
+
+        <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+          <div class="labels">
+            <div class="form-group labels">
+              <label for="nombre">Nombre de la Skill</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                name="nombre"
+                [(ngModel)]="skill.nombre"
+                required
+              />
+            </div>
+
+            <div class="form-group labels">
+              <label for="porcentaje">Ingrese el porcentaje</label>
+              <input
+                type="text"
+                class="form-control"
+                id="porcentaje"
+                name="porcentaje"
+                [(ngModel)]="skill.porcentaje"
+                required
+              />
+            </div>
+
+            <div class="form-img labels">
+              <label for="img">Logo</label>
+              <input
+                type="file"
+                class="form-control"
+                id="img"
+                name="img"
+                [(ngModel)]="skill.img"
+                (change)="uploadImage($event)"
+                accept=".jpg, .jpeg, .png"
+              />
+            </div>
+          </div>
+
+          <div class="mt-5 text-center">
+            <button *ngIf="url; else btnDisabled" class="btn btn-success">
+              Actualizar Skill
+            </button>
+          </div>
+
+          <ng-template #btnDisabled>
+            <button disabled="true" class="btn btn-outline-secondary">
+              Actualizar Skill
+            </button>
+          </ng-template>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-</section>
