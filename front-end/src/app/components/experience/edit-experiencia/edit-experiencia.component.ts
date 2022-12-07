@@ -61,7 +61,9 @@ export class EditExperienciaComponent implements OnInit {
     const id = this.activateRouter.snapshot.params['id'];
     const name = "experience_" + id
     this.imgService.uploadImage($event, name);
-    this.getImagen()
+    setTimeout(() => {
+      this.getImagen()
+    }, 2000);
   }
 
 
@@ -74,6 +76,6 @@ export class EditExperienciaComponent implements OnInit {
         console.log("edit-exp-URL:" + this.url)
       }
     )
-    .catch(error => console.log("No se pudo encontrar la imagen"))
+    .catch(error => console.log("No se pudo encontrar la imagen de la experiencia:"+ id))
   }
 }

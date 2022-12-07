@@ -26,8 +26,9 @@ export class ImageService {
     .then(async response => {
       for(let item of response.items){
         this.url = await getDownloadURL(item)
-        console.log("URL:" + this.url)
+        
       }
+      console.log("imgS On")
     })
     .catch(error => console.log(error))
   }

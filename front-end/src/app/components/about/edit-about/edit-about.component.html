@@ -5,11 +5,17 @@
         <img
           class="rounded-circle mt-5 border"
           width="150px"
-          [src]="persona.img"
+          [src]="this.url"
           alt="img-perfil-{{ persona.id }}"
         />
         <span class="font-weight-bold"></span><span class="text-black-50"></span
         ><span> </span>
+        <img
+          class="mt-5 border"
+          width="150px"
+          [src]="this.urlBanner"
+          alt="img-banner-{{ persona.id }}"
+        />
       </div>
     </div>
     <div class="col-md-9">
