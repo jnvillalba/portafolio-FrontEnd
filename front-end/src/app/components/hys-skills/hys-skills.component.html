@@ -15,24 +15,26 @@
     class="text-center col-sm-4 col-md-4 col-lg-4 circle"
     *ngFor="let skill of skill"
   >
+    <h5>{{skill.nombre}}</h5>
     <circle-progress
+
       [percent]="skill.porcentaje"
       [radius]="90"
+      [showImage]="true"
       [imageSrc]="skill.img"
-      [title]="skill.nombre"
-      [titleColor]="'#212F3C'"
-      [showTitle]="true"
-      [showImage]="false"
-      [imageHeight]="70"
-      [imageWidth]="70"
-      [showUnits]="false"
+      [showTitle]="false"
       [showSubtitle]="false"
-      [outerStrokeWidth]="16"
-      [innerStrokeWidth]="2"
-      [outerStrokeColor]="'#78C000'"
-      [innerStrokeColor]="'#C7E596'"
+      [imageHeight]="80"
+      [imageWidth]="80"
+      [subtitleColor]="'#FFFFFF'"
+      [outerStrokeWidth]="5"
+      [outerStrokeColor]="'#FFFFFF'"
+      [innerStrokeColor]="'#FFFFFF'"
+      [showInnerStroke]="false"
       [animation]="true"
       [animationDuration]="300"
+      [backgroundColor]="'#000000'"
+      
     >
     </circle-progress>
 

@@ -1,3 +1,4 @@
+<section class="vh-100">
 <div class="container rounded bg-white mt-5 mb-5">
   <div class="row">
     <div class="col-md-3">
@@ -22,27 +23,26 @@
           <div class="labels">
             <div class="form-group labels">
               <label for="nombre">Nueva Skill</label>
-            <input
-              type="text"
-              class="form-control"
-              id="nombre"
-              name="nombre"
-              [(ngModel)]="nombre"
-              required
-            />
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                name="nombre"
+                [(ngModel)]="nombre"
+                required
+              />
             </div>
 
             <div class="form-group labels">
-              
               <label for="porcentaje">Porcentaje</label>
-            <input
-              type="text"
-              class="form-control"
-              id="porcentaje"
-              name="porcentaje"
-              [(ngModel)]="porcentaje"
-              required
-            />
+              <input
+                type="number"
+                class="form-control"
+                id="porcentaje"
+                name="porcentaje"
+                [(ngModel)]="porcentaje"
+                required
+              />
             </div>
 
             <div class="form-img labels">
@@ -75,3 +75,4 @@
     </div>
   </div>
 </div>
+</section>

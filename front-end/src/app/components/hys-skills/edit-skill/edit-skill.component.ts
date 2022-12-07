@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Hys } from 'src/app/model/hys';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
-import { Storage, ref, list, getDownloadURL } from '@angular/fire/storage';
+import { ref, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit-skill',
@@ -54,13 +54,16 @@ export class EditSkillComponent implements OnInit {
     const id = this.activatedRouter.snapshot.params['id'];
     const name = "hys_" + id
     this.imgService.uploadImage($event, name);
-    this.getImagen()
+    setTimeout(() => {
+      this.getImagen()
+    }, 2000);
   }
 
 
   getImagen(){
     const imgsRef = ref(this.imgService.storage,`imagen`) 
     const id = this.activatedRouter.snapshot.params['id'];
+    
     list(imgsRef)
     .then(async response => {
       this.url = await getDownloadURL(response.items.find(x => x.name === "hys_"+id ))
