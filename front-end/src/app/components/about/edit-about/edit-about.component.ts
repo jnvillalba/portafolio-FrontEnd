@@ -23,6 +23,8 @@ export class EditAboutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getImagen()
+    this.getBanner()
     const id = this.activateRouter.snapshot.params['id'];
     this.personaService.detail(id).subscribe(
       (data) => {
@@ -52,6 +54,7 @@ export class EditAboutComponent implements OnInit {
   }
 
   uploadImage($event: any) {
+    this.borrarImagenes()
     const id = this.activateRouter.snapshot.params['id'];
     const name = "perfil_" + id
     this.imgService.uploadImage($event, name);
@@ -86,6 +89,11 @@ export class EditAboutComponent implements OnInit {
         console.log('edit-banner-URL:' + this.urlBanner);
       })
       .catch((error) => console.log('No se pudo encontrar la imagen del Banner'));
+  }
+
+  borrarImagenes(){
+    this.url = null
+    this.urlBanner = null
   }
 
 }
