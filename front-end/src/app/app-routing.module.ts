@@ -1,3 +1,4 @@
+
 import { EditAboutComponent } from './components/about/edit-about/edit-about.component';
 import { EditEducacionComponent } from './components/education/edit-educacion/edit-educacion.component';
 import { NewEducacionComponent } from './components/education/new-educacion/new-educacion.component';
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'editskill/:id', component: EditSkillComponent},
   { path: 'editacercade/:id', component: EditAboutComponent},
   { path: 'newProject', component: NewProjectComponent},
-  { path: 'editProject/:id', component: EditProjectComponent}
+  { path: 'editProject/:id', component: EditProjectComponent},
   
 ];
 

@@ -33,6 +33,7 @@ import { NewProjectComponent } from './components/projects/new-project/new-proje
 import { EditProjectComponent } from './components/projects/edit-project/edit-project.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { EditProjectComponent } from './components/projects/edit-project/edit-pr
     NewSkillComponent,
     EditAboutComponent,
     NewProjectComponent,
-    EditProjectComponent
+    EditProjectComponent,
+
   ],
   imports: [
     BrowserModule,
