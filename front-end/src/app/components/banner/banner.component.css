@@ -14,50 +14,6 @@
   filter: grayscale(0%);
 }
 
-.img-top a span {
-  display: block;
-  position: absolute;
-  background-color: #00ffd1;
-  cursor: pointer;
-  /*   z-index: 2; */
-}
-
-.img-top a span:nth-child(1) {
-  background-color: #00ffd1;
-  right: 0;
-  top: 200px;
-  width: 100%;
-  height: 5px;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.5s ease-in-out;
-}
-
-.img-top:hover a span:nth-child(1) {
-  background-color: #00ffd1;
-  transform: scaleX(1);
-  transform-origin: left;
-  transition: transform 0.5s ease-in-out;
-}
-
-.img-top a span:nth-child(2) {
-  background-color: #00ffd1;
-  right: 0;
-  top: 0;
-  width: 100%;
-  height: 5px;
-  border-radius: 5px 5px 0 0;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s ease-in-out;
-}
-
-.img-top:hover a span:nth-child(2) {
-  background-color: #00ffd1;
-  transform: scaleX(1);
-  transform-origin: right;
-  transition: transform 0.5s ease-in-out;
-}
 img {
     /*   aspect-ratio: 1/1; */
     margin: auto;
