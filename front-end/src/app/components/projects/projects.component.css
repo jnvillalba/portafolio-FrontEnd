@@ -2,8 +2,14 @@
     padding: 20px;
   }
   
-  .logo-exp {
+  .logo{
     margin-top: 20px;
+  }
+  @media (max-width: 768px){
+    .logo{
+      margin-top: -20px;
+      margin-bottom: 20px;
+    }
   }
   
   .mat-card{
