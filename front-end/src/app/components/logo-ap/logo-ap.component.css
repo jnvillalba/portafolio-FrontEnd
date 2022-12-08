@@ -11,7 +11,7 @@
     margin-right: 0.5em;
 }
 
-@media (max-width: 575px){
+@media (max-width: 359px){
     
 
     .container{
@@ -30,3 +30,7 @@
     }
 }
 
+.layout{
+    display: grid;
+    place-items: right;
+}
