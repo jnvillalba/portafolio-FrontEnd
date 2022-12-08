@@ -22,6 +22,7 @@ export class EditSkillComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getImagen()
     const id = this.activatedRouter.snapshot.params['id'];
     this.skillS.detail(id).subscribe(
       (data) => {
@@ -51,6 +52,7 @@ export class EditSkillComponent implements OnInit {
 
 
   uploadImage($event: any) {
+    this.url = null
     const id = this.activatedRouter.snapshot.params['id'];
     const name = "hys_" + id
     this.imgService.uploadImage($event, name);
