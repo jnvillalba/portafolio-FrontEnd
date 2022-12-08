@@ -20,8 +20,13 @@
 .btn-right {
     float: right;
     margin-left: 10px;
-}
-
+  }
+  @media (max-width: 768px) {
+    .btn-right {
+      margin-top: 5px;
+      
+    }
+  }
 .layout {
     padding-top: 25px;
     padding-bottom: 25px;
