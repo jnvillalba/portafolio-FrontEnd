@@ -3,13 +3,13 @@
     <div class="col-md-3">
       <div class="d-flex flex-column align-items-center text-center p-3 py-5">
         <img
-          class="rounded-circle mt-5 border"
+          class="mt-5 border"
           width="150px"
           [src]="this.url"
           alt="img-educ-{{ educ.id }}"
         />
-        <span class="font-weight-bold"></span><span class="text-black-50">
-        </span><span> </span>
+        <span class="font-weight-bold"></span
+        ><span class="text-black-50"> </span><span> </span>
       </div>
     </div>
     <div class="col-md-9">
@@ -30,7 +30,7 @@
             />
           </div>
 
-          <div class="form-group">
+          <div class="form-group labels">
             <label for="nombreE">Nombre de la institucion</label>
             <input
               type="text"
@@ -54,16 +54,17 @@
             />
           </div>
 
-          <div class="form-group">
+          <div class="form-group labels">
             <label for="descripcionE">Descripcion</label>
-            <input
+            <textarea 
               type="text"
               class="form-control"
               id="descripcionE"
               name="descripcionE"
               [(ngModel)]="educ.descripcionE"
               required
-            />
+              rows="3"
+            > </textarea> 
           </div>
 
           <div class="form-img labels">
@@ -78,10 +79,9 @@
               accept=".jpg, .jpeg, .png"
             />
           </div>
-          
+
           <div class="mt-5 text-center">
-            <button *ngIf="url ; else btnDisabled"
-            class="btn btn-success">
+            <button *ngIf="url; else btnDisabled" class="btn btn-success">
               Actualizar Educacion
             </button>
           </div>
@@ -90,7 +90,6 @@
             <button disabled="true" class="btn btn-outline-secondary">
               Actualizar Educacion
             </button>
-
           </ng-template>
         </form>
       </div>
