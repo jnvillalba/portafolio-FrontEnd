@@ -32,14 +32,15 @@
               
                 <div class="form-group labels">
                   <label for="descripcionP">Descripcion</label>
-                  <input
+                  <textarea
                     type="text"
                     class="form-control"
                     id="descripcionP"
                     name="descripcionP"
                     [(ngModel)]="proyecto.descripcionP"
                     required
-                  />
+                    rows="3"
+                    > </textarea> 
                 </div>
   
                 <div class="form-group labels">

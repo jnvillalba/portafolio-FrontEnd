@@ -58,14 +58,15 @@
 
             <div class="form-group labels">
               <label for="descripcionE">Descripcion</label>
-              <input
+              <textarea
                 type="text"
                 class="form-control"
                 id="descripcionE"
                 name="descripcionE"
                 [(ngModel)]="expLab.descripcionE"
                 required
-              />
+                rows="3"
+              > </textarea> 
             </div>
 
             <div class="form-img labels">

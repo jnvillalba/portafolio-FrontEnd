@@ -64,14 +64,15 @@
 
             <div class="form-group labels">
               <label for="descripcion">Descripcion</label>
-              <input
+              <textarea
                 type="text"
                 class="form-control"
                 id="descripcion"
                 name="descripcion"
                 [(ngModel)]="persona.descripcion"
                 required
-              />
+                rows="3"
+              > </textarea> 
             </div>
 
             <div class="form-img labels">
