@@ -5,7 +5,7 @@
         <img
           class="rounded-circle mt-5 border"
           width="150px"
-          [src]="imgService.url"
+          [src]="img"
           alt="img-educ-{{ nombreE }}"
         />
         <span class="font-weight-bold"></span>
@@ -79,9 +79,18 @@
               accept=".jpg, .jpeg, .png"
             />
           </div>
+
           <div class="mt-5 text-center">
-            <button class="btn btn-outline-secondary">Agregar Educacion</button>
+            <button *ngIf="img; else btnDisabled" class="btn btn-success">
+              Agregar Educacion
+            </button>
           </div>
+
+          <ng-template #btnDisabled>
+            <button disabled="true" class="btn btn-outline-secondary">
+              Agregar Educacion
+            </button>
+          </ng-template>
         </form>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { ImageService } from 'src/app/service/image.service';
 import { Component, OnInit } from '@angular/core';
 import { ExperienciaService } from 'src/app/service/experiencia.service';
 import { Experiencia } from 'src/app/model/experiencia';
-import { Storage, ref, list, getDownloadURL } from '@angular/fire/storage';
+import {ref, list, getDownloadURL } from '@angular/fire/storage';
 
 
 @Component({

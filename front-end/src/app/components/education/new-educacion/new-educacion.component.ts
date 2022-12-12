@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Educacion } from 'src/app/model/educacion';
 import { EducacionService } from 'src/app/service/educacion.service';
 import { ImageService } from 'src/app/service/image.service';
+import {ref, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-new-educacion',
@@ -45,5 +46,18 @@ export class NewEducacionComponent implements OnInit {
     const id = this.activateRouter.snapshot.params['id'];
     const name = "education_" + id
     this.imgService.uploadImage($event, name);
+    this.getImagen()
+  }
+
+  getImagen(){
+    const imgsRef = ref(this.imgService.storage,`imagen`) 
+    const id = this.activateRouter.snapshot.params['id'];
+    list(imgsRef)
+    .then(async response => {
+      this.img = await getDownloadURL(response.items.find(x => x.name === "education_"+id ))
+        console.log("edit-educ-URL:" + this.img)
+      }
+    )
+    .catch(error => console.log("No se pudo encontrar la imagen de la educacion:"+ id))
   }
 }
