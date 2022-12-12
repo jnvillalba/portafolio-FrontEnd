@@ -1,20 +1,22 @@
 #logoAP{
     width: 150px;
 }
-.container{
+
+.social{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.social{
-    margin-right: 0.5em;
-}
+.btn-right{
+    float: right;
+    margin-right: 10px;
+  }
 
 @media (max-width: 359px){
     
 
-    .container{
+    .layout{
         flex-direction: column;
     }
 
@@ -23,14 +25,14 @@
         justify-content: column;
         align-items: center;
         margin-bottom: 0.2em;
-    }
-    .social img{
-        margin-right: 0.2em;
         
     }
+    
 }
 
 .layout{
-    display: grid;
-    place-items: right;
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+    align-items: center;
 }

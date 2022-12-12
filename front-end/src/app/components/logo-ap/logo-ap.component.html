@@ -1,13 +1,14 @@
-<div class="row">
-  <div class="container ">
-    <div class="logoAP">
-      <img id="logoAP" src="../../../assets/logo-AP.png" alt="logo-AP" />
-    </div>
-
-    <div class="social">
-      <app-social></app-social>
+<div class="container">
+  <div class="row">
+    <div class="layout">
       
-      <button type="button" class="btn btn-outline-light pull-right"
+      <img id="logoAP" src="../../../assets/logo-AP.png" alt="logo-AP" />
+    
+
+      <div class="social">
+      <app-social ></app-social>
+      
+      <button type="button" class="btn btn-outline-light"
         (click)="login()"
         *ngIf="!isLogged"
         >
@@ -15,12 +16,13 @@
       </button>
 
       
-      <button type="button" class="btn btn-outline-light pull-right "
+      <button type="button" class="btn btn-outline-light"
         (click)="onLogOut()"
         *ngIf="isLogged"
       >
         Logout
       </button>
     </div>
+  </div>
   </div>
 </div>

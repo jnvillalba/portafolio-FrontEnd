@@ -1,54 +1,54 @@
-<div class="row">
-  <div class="layout position-relative">
-    <h2>Hard & Soft Skills</h2>
-    <button
-      type="button"
-      routerLink="/newskill"
-      class="btn btn-dark"
-      *ngIf="isLogged"
+<div class="container">
+  <div class="row">
+    <div class="layout position-relative">
+      <h2>Hard & Soft Skills</h2>
+      <button
+        type="button"
+        routerLink="/newskill"
+        class="btn btn-dark"
+        *ngIf="isLogged"
+      >
+        Nueva Skill
+      </button>
+    </div>
+
+    <div
+      class="text-center col-sm-4 col-md-4 col-lg-4 circle"
+      *ngFor="let skill of skill"
     >
-      Nueva Skill
-    </button>
-  </div>
+      <h3>{{ skill.nombre }}</h3>
+      <circle-progress
+        [percent]="skill.porcentaje"
+        [radius]="90"
+        [showImage]="true"
+        [imageSrc]="skill.img"
+        [showTitle]="false"
+        [showSubtitle]="false"
+        [imageHeight]="80"
+        [imageWidth]="80"
+        [subtitleColor]="'#FFFFFF'"
+        [outerStrokeWidth]="5"
+        [outerStrokeColor]="'#FFFFFF'"
+        [innerStrokeColor]="'#FFFFFF'"
+        [showInnerStroke]="false"
+        [animation]="true"
+        [animationDuration]="300"
+        [backgroundColor]="'#000000'"
+      >
+      </circle-progress>
 
-  <div
-    class="text-center col-sm-4 col-md-4 col-lg-4 circle"
-    *ngFor="let skill of skill"
-  >
-    <h3>{{skill.nombre}}</h3>
-    <circle-progress
-
-      [percent]="skill.porcentaje"
-      [radius]="90"
-      [showImage]="true"
-      [imageSrc]="skill.img"
-      [showTitle]="false"
-      [showSubtitle]="false"
-      [imageHeight]="80"
-      [imageWidth]="80"
-      [subtitleColor]="'#FFFFFF'"
-      [outerStrokeWidth]="5"
-      [outerStrokeColor]="'#FFFFFF'"
-      [innerStrokeColor]="'#FFFFFF'"
-      [showInnerStroke]="false"
-      [animation]="true"
-      [animationDuration]="300"
-      [backgroundColor]="'#000000'"
-      
-    >
-    </circle-progress>
-
-    <div class="d-flex justify-content-center">
-      <td *ngIf="isLogged">
-        <button class="btn btn-light" routerLink="/editskill/{{ skill.id }}">
-          <i class="bi bi-pencil-fill"></i>
-        </button>
-      </td>
-      <td *ngIf="isLogged">
-        <button class="btn btn-danger" (click)="delete(skill.id)">
-          <i class="bi bi-trash-fill"></i>
-        </button>
-      </td>
+      <div class="d-flex justify-content-center">
+        <td *ngIf="isLogged">
+          <button class="btn btn-light" routerLink="/editskill/{{ skill.id }}">
+            <i class="bi bi-pencil-fill"></i>
+          </button>
+        </td>
+        <td *ngIf="isLogged">
+          <button class="btn btn-danger" (click)="delete(skill.id)">
+            <i class="bi bi-trash-fill"></i>
+          </button>
+        </td>
+      </div>
     </div>
   </div>
 </div>
