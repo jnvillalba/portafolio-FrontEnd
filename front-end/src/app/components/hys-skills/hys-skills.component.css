@@ -23,4 +23,17 @@
 .btn {
   margin: 5px;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
+
+circle-progress{
+  -webkit-filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
+  filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
+}
+
+image, img{
+  -webkit-filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
+  filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
+}
+
+

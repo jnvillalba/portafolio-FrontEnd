@@ -23,6 +23,7 @@ export class EditProjectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getImagen()
     const id = this.activateRouter.snapshot.params['id']
     this.sProyecto.detail(id).subscribe(
       (data) => {
@@ -51,22 +52,27 @@ export class EditProjectComponent implements OnInit {
   }
 
   uploadImage($event: any) {
+    this.url = null
     const id = this.activateRouter.snapshot.params['id'];
     const name = "proyecto_" + id
     this.imgService.uploadImage($event, name);
-    this.getImagen();
+    setTimeout(() => {
+      this.getImagen()
+    }, 3000);
+    
   }
 
   getImagen(){
-    const imgsRef = ref(this.imgService.storage,`imagen`) 
+    const imgsRef = ref(this.imgService.storage,`imagen`)
+
     const id = this.activateRouter.snapshot.params['id'];
     list(imgsRef)
     .then(async response => {
       this.url = await getDownloadURL(response.items.find(x => x.name === "proyecto_"+id ))
-        console.log("edit-educ-URL:" + this.url)
+        console.log("edit-proy-URL:" + this.url)
       }
     )
-    .catch(error => console.log(error))
+    .catch(error => console.log(error + "No se pudo encontrar la imagen del proyecto de id:"+id))
   }
 }
 

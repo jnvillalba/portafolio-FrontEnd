@@ -43,6 +43,7 @@ export class NewEducacionComponent implements OnInit {
   }
 
   uploadImage($event: any) {
+    this.img = null
     const id = this.activateRouter.snapshot.params['id'];
     const name = "education_" + id
     this.imgService.uploadImage($event, name);

@@ -49,6 +49,7 @@ export class NewExperienciaComponent implements OnInit {
   }
 
   uploadImage($event: any) {
+    this.img = null
     const id = this.activateRouter.snapshot.params['id'];
     const name = 'experience_' + id;
     this.imgService.uploadImage($event, name);

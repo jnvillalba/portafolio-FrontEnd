@@ -3,19 +3,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Proyecto } from 'src/app/model/proyecto';
 import { ImageService } from 'src/app/service/image.service';
 import { ProyectoService } from 'src/app/service/proyecto.service';
+import { ref, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-new-project',
   templateUrl: './new-project.component.html',
-  styleUrls: ['./new-project.component.css']
+  styleUrls: ['./new-project.component.css'],
 })
 export class NewProjectComponent implements OnInit {
-
   nombreP: string = '';
   descripcionP: string = '';
-  fecha       : string = '';
-  link      : string = '';
-  img          : string = '';
+  fecha: string = '';
+  link: string = '';
+  img: string = '';
 
   constructor(
     private sProyecto: ProyectoService,
@@ -27,23 +27,47 @@ export class NewProjectComponent implements OnInit {
   ngOnInit(): void {}
 
   onCreate(): void {
-    const exp = new Proyecto(this.nombreP, this.descripcionP, this.fecha,
-      this.link, this.img);
+    const exp = new Proyecto(
+      this.nombreP,
+      this.descripcionP,
+      this.fecha,
+      this.link,
+      this.img
+    );
     this.sProyecto.save(exp).subscribe(
       (data) => {
-        alert('Proyecto añadido');
+        alert('Proyecto creado correctamente');
         this.router.navigate(['']);
       },
       (err) => {
-        alert('Error en añadir Proyecto');
+        alert('Error en crear Proyecto');
         this.router.navigate(['']);
       }
     );
   }
 
   uploadImage($event: any) {
+    this.img = null
     const id = this.activateRouter.snapshot.params['id'];
-    const name = "logo_proyecto" + id
+    const name = 'proyecto_' + id;
     this.imgService.uploadImage($event, name);
+    
+      this.getImagen();
+    
+  }
+
+  getImagen() {
+    const imgsRef = ref(this.imgService.storage, `imagen`);
+    const id = this.activateRouter.snapshot.params['id'];
+    list(imgsRef)
+      .then(async (response) => {
+        this.img = await getDownloadURL(
+          response.items.find((x) => x.name === 'proyecto_' + id)
+        );
+        console.log('edit-proy-URL:' + this.img);
+      })
+      .catch((error) =>
+        console.log('No se pudo encontrar la imagen del proyecto de id:' + id)
+      );
   }
 }
