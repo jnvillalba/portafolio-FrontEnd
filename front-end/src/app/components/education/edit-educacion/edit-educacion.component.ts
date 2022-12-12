@@ -22,6 +22,7 @@ export class EditEducacionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getImagen()
     const id = this.activateRouter.snapshot.params['id'];
     this.sEducacion.detail(id).subscribe(
       (data) => {
@@ -50,6 +51,7 @@ export class EditEducacionComponent implements OnInit {
   }
 
   uploadImage($event: any) {
+    this.url = null
     const id = this.activateRouter.snapshot.params['id'];
     const name = "education_" + id
     this.imgService.uploadImage($event, name);
@@ -66,6 +68,6 @@ export class EditEducacionComponent implements OnInit {
         console.log("edit-educ-URL:" + this.url)
       }
     )
-    .catch(error => console.log(error))
+    .catch(error => console.log(error + "No se pudo encontrar la imagen de la educacion:" + id))
   }
 }

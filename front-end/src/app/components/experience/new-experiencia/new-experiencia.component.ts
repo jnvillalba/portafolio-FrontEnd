@@ -3,6 +3,8 @@ import { ImageService } from 'src/app/service/image.service';
 import { Component, OnInit } from '@angular/core';
 import { ExperienciaService } from 'src/app/service/experiencia.service';
 import { Experiencia } from 'src/app/model/experiencia';
+import { Storage, ref, list, getDownloadURL } from '@angular/fire/storage';
+
 
 @Component({
   selector: 'app-new-experiencia',
@@ -50,5 +52,18 @@ export class NewExperienciaComponent implements OnInit {
     const id = this.activateRouter.snapshot.params['id'];
     const name = 'experience_' + id;
     this.imgService.uploadImage($event, name);
+    this.getImagen()
+  }
+
+  getImagen(){
+    const imgsRef = ref(this.imgService.storage,`imagen`) 
+    const id = this.activateRouter.snapshot.params['id'];
+    list(imgsRef)
+    .then(async response => {
+      this.img = await getDownloadURL(response.items.find(x => x.name === "experience_"+id ))
+        console.log("edit-exp-URL:" + this.img)
+      }
+    )
+    .catch(error => console.log("No se pudo encontrar la imagen de la experiencia:"+ id))
   }
 }

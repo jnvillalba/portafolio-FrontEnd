@@ -17,9 +17,6 @@ export class EditExperienciaComponent implements OnInit {
   expLab: Experiencia = null;
   url: string = ""
 
-  url2: Observable<string>
-
-
   constructor(
     private sExperiencia: ExperienciaService,
     private activateRouter: ActivatedRoute,
@@ -29,6 +26,7 @@ export class EditExperienciaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getImagen()
     const id = this.activateRouter.snapshot.params['id']
     this.sExperiencia.detail(id).subscribe(
       (data) => {
@@ -58,6 +56,7 @@ export class EditExperienciaComponent implements OnInit {
   }
 
   uploadImage($event: any) {
+    this.url = null
     const id = this.activateRouter.snapshot.params['id'];
     const name = "experience_" + id
     this.imgService.uploadImage($event, name);
