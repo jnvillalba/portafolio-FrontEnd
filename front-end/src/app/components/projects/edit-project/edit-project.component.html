@@ -9,8 +9,7 @@
           alt="img-proj-{{ proyecto.id }}"
         />
         <span class="font-weight-bold"></span>
-        <span class="text-black-50"></span
-        ><span> </span>
+        <span class="text-black-50"></span><span> </span>
       </div>
     </div>
     <div class="col-md-9">
@@ -70,6 +69,17 @@
                 required
               />
             </div>
+            <div class="form-group labels">
+              <label for="repo">Repositorio</label>
+              <input
+                type="text"
+                class="form-control"
+                id="repo"
+                name="repo"
+                [(ngModel)]="proyecto.repo"
+                required
+              />
+            </div>
 
             <div class="form-img labels">
               <label for="img">Logo</label>
@@ -81,11 +91,8 @@
                 [(ngModel)]="proyecto.img"
                 (change)="uploadImage($event)"
                 accept=".jpg, .jpeg, .png"
-                
               />
             </div>
-            
-            
           </div>
 
           <div class="mt-5 text-center">

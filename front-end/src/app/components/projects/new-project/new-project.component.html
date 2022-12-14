@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-md-3">
       <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-        <img *ngIf="img"
+        <img
+          *ngIf="img"
           class="mt-5 border"
           width="150px"
           [src]="img"
@@ -65,6 +66,17 @@
                 id="link"
                 name="link"
                 [(ngModel)]="link"
+                required
+              />
+            </div>
+            <div class="form-group labels">
+              <label for="repo">Repositorio</label>
+              <input
+                type="text"
+                class="form-control"
+                id="repo"
+                name="repo"
+                [(ngModel)]="repo"
                 required
               />
             </div>

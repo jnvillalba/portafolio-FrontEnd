@@ -16,6 +16,7 @@ export class NewProjectComponent implements OnInit {
   fecha: string = '';
   link: string = '';
   img: string = '';
+  repo: string = '';
 
   constructor(
     private sProyecto: ProyectoService,
@@ -32,7 +33,8 @@ export class NewProjectComponent implements OnInit {
       this.descripcionP,
       this.fecha,
       this.link,
-      this.img
+      this.img,
+      this.repo
     );
     this.sProyecto.save(exp).subscribe(
       (data) => {
