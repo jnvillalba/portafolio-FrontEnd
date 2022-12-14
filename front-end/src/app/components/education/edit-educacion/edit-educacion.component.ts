@@ -54,7 +54,9 @@ export class EditEducacionComponent implements OnInit {
     this.url = null;
     const name = 'education_' + this.educ.nombreE;
     this.imgService.uploadImage($event, name);
-    this.getImagen();
+    setTimeout(() => {
+      this.getImagen();
+    }, 2000);
   }
 
   getImagen() {

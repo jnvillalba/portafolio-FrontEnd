@@ -47,7 +47,9 @@ export class NewEducacionComponent implements OnInit {
     const id = this.activateRouter.snapshot.params['id'];
     const name = "education_" + this.nombreE
     this.imgService.uploadImage($event, name);
-    this.getImagen()
+    setTimeout(() => {
+      this.getImagen();
+    }, 2000);
   }
 
   getImagen(){
