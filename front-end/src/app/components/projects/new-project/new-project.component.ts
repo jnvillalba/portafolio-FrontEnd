@@ -47,13 +47,13 @@ export class NewProjectComponent implements OnInit {
   }
 
   uploadImage($event: any) {
-    this.img = null
     const id = this.activateRouter.snapshot.params['id'];
+    this.img = null
     const name = 'proyecto_' + id;
     this.imgService.uploadImage($event, name);
-    
-      this.getImagen();
-    
+    setTimeout(() => {
+      this.getImagen()
+    }, 3000);
   }
 
   getImagen() {

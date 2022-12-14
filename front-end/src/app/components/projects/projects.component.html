@@ -11,45 +11,39 @@
         Agregar Proyecto
       </button>
     </div>
-    <div>
-      <div *ngFor="let Proyecto of proyecto" class="col-md-4 col-sm-6">
-        <div class="box">
-          <img [src]="Proyecto.img" alt="img-proj-{{ Proyecto.id }}" />
-          <div class="box-content">
-            <h4>{{ Proyecto.fecha }}</h4>
-            <h3 class="title">{{ Proyecto.nombreP }}</h3>
-            <span class="post">{{ Proyecto.descripcionP }}</span>
-            
-          </div>
-          <ul class="icon">
-            <li>
-              <a href="#"><i class="fa fa-link"></i></a>
-            </li>
-            <li>
-              <a href="{{ Proyecto.link }}"><i class="fa fa-folder"></i></a>
-            </li>
-          </ul>
+    <div *ngFor="let Proyecto of proyecto" class="col-md-4 col-sm-6">
+      <div class="box">
+        <img [src]="Proyecto.img" alt="img-proj-{{ Proyecto.id }}" />
+        <div class="box-content">
+          <h4>{{ Proyecto.fecha }}</h4>
+          <h3 class="title">{{ Proyecto.nombreP }}</h3>
+          <span class="post">{{ Proyecto.descripcionP }}</span>
         </div>
-        <div *ngIf="isLogged">
-          <div class="d-grid gap-2 col-6 mx-auto">
-          
+        <ul class="icon">
+          <li>
+            <a href="#"><i class="fa fa-link"></i></a>
+          </li>
+          <li>
+            <a href="{{ Proyecto.link }}"><i class="fa fa-folder"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="isLogged">
+        <div class="d-grid gap-2 col-6 mx-auto">
           <button
-            class="btn btn-outline-dark "
+            class="btn btn-outline-dark"
             routerLink="/editProject/{{ Proyecto.id }}"
           >
             <i class="bi bi-pencil"></i>
             Editar
           </button>
-  
+
           <button class="btn btn-danger" (click)="delete(Proyecto.id)">
             <i class="bi bi-trash3"></i>
             Borrar
           </button>
         </div>
-        </div>
       </div>
-
-      
     </div>
   </div>
 </div>
