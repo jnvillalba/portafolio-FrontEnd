@@ -12,17 +12,17 @@ import { ref, list, getDownloadURL } from '@angular/fire/storage';
 })
 export class EditSkillComponent implements OnInit {
   skill: Hys = null;
-  url: string = ""
+  url: string = '';
 
   constructor(
     private skillS: HysService,
     private activatedRouter: ActivatedRoute,
     private router: Router,
-    public imgService: ImageService,
+    public imgService: ImageService
   ) {}
 
   ngOnInit(): void {
-    this.getImagen()
+    this.getImagen();
     const id = this.activatedRouter.snapshot.params['id'];
     this.skillS.detail(id).subscribe(
       (data) => {
@@ -37,7 +37,7 @@ export class EditSkillComponent implements OnInit {
 
   onUpdate() {
     const id = this.activatedRouter.snapshot.params['id'];
-    this.skill.img = this.url
+    this.skill.img = this.url;
 
     this.skillS.update(id, this.skill).subscribe(
       (data) => {
@@ -50,28 +50,31 @@ export class EditSkillComponent implements OnInit {
     );
   }
 
-
   uploadImage($event: any) {
-    this.url = null
+    this.url = null;
     const id = this.activatedRouter.snapshot.params['id'];
-    const name = "hys_" + id
+    const name = 'hys_' + this.skill.nombre;
     this.imgService.uploadImage($event, name);
     setTimeout(() => {
-      this.getImagen()
+      this.getImagen();
     }, 2000);
   }
 
+  getImagen() {
+    const imgsRef = ref(this.imgService.storage, `imagen`);
 
-  getImagen(){
-    const imgsRef = ref(this.imgService.storage,`imagen`) 
-    const id = this.activatedRouter.snapshot.params['id'];
-    
     list(imgsRef)
-    .then(async response => {
-      this.url = await getDownloadURL(response.items.find(x => x.name === "hys_"+id ))
-        console.log("edit-exp-URL:" + this.url)
-      }
-    )
-    .catch(error => console.log("No se pudo encontrar la imagen de la skill de id:"+id))
+      .then(async (response) => {
+        this.url = await getDownloadURL(
+          response.items.find((x) => x.name === 'hys_' + this.skill.nombre)
+        );
+        console.log('edit-exp-URL:' + this.url);
+      })
+      .catch((error) =>
+        console.log(
+          'No se pudo encontrar la imagen de la skill de id:' +
+            this.skill.nombre
+        )
+      );
   }
 }

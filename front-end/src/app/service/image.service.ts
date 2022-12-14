@@ -28,7 +28,7 @@ export class ImageService {
         this.url = await getDownloadURL(item)
         
       }
-      console.log("imgS On")
+      console.log("imgS finish")
     })
     .catch(error => console.log(error))
   }

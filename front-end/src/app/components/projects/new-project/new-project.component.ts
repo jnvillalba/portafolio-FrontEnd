@@ -49,7 +49,7 @@ export class NewProjectComponent implements OnInit {
   uploadImage($event: any) {
     const id = this.activateRouter.snapshot.params['id'];
     this.img = null
-    const name = 'proyecto_' + id;
+    const name = 'proyecto_' + this.nombreP;
     this.imgService.uploadImage($event, name);
     setTimeout(() => {
       this.getImagen()
@@ -62,12 +62,12 @@ export class NewProjectComponent implements OnInit {
     list(imgsRef)
       .then(async (response) => {
         this.img = await getDownloadURL(
-          response.items.find((x) => x.name === 'proyecto_' + id)
+          response.items.find((x) => x.name === 'proyecto_' + this.nombreP)
         );
         console.log('edit-proy-URL:' + this.img);
       })
       .catch((error) =>
-        console.log('No se pudo encontrar la imagen del proyecto de id:' + id)
+        console.log('No se pudo encontrar la imagen del proyecto de id:' + this.nombreP)
       );
   }
 }

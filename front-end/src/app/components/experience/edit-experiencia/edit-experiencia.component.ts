@@ -11,11 +11,9 @@ import { Storage, ref, list, getDownloadURL } from '@angular/fire/storage';
   templateUrl: './edit-experiencia.component.html',
   styleUrls: ['./edit-experiencia.component.css'],
 })
-
 export class EditExperienciaComponent implements OnInit {
-
   expLab: Experiencia = null;
-  url: string = ""
+  url: string = '';
 
   constructor(
     private sExperiencia: ExperienciaService,
@@ -26,11 +24,11 @@ export class EditExperienciaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getImagen()
-    const id = this.activateRouter.snapshot.params['id']
+    this.getImagen();
+    const id = this.activateRouter.snapshot.params['id'];
     this.sExperiencia.detail(id).subscribe(
       (data) => {
-        this.expLab = data
+        this.expLab = data;
       },
       (err) => {
         alert('Error en editar experiencia');
@@ -40,9 +38,9 @@ export class EditExperienciaComponent implements OnInit {
   }
 
   onUpdate(): void {
-    const id = this.activateRouter.snapshot.params['id']
-    this.expLab.img = this.url
-    
+    const id = this.activateRouter.snapshot.params['id'];
+    this.expLab.img = this.url;
+
     this.sExperiencia.update(id, this.expLab).subscribe(
       (data) => {
         alert('Experiencia editada');
@@ -56,25 +54,32 @@ export class EditExperienciaComponent implements OnInit {
   }
 
   uploadImage($event: any) {
-    this.url = null
-    const id = this.activateRouter.snapshot.params['id'];
-    const name = "experience_" + id
+    this.url = null;
+
+    const name = 'experience_' + this.expLab.nombreE;
     this.imgService.uploadImage($event, name);
     setTimeout(() => {
-      this.getImagen()
+      this.getImagen();
     }, 2000);
   }
 
-
-  getImagen(){
-    const imgsRef = ref(this.storage,`imagen`) 
-    const id = this.activateRouter.snapshot.params['id'];
+  getImagen() {
+    const imgsRef = ref(this.storage, `imagen`);
     list(imgsRef)
-    .then(async response => {
-      this.url = await getDownloadURL(response.items.find(x => x.name === "experience_"+id ))
-        console.log("edit-exp-URL:" + this.url)
-      }
-    )
-    .catch(error => console.log("No se pudo encontrar la imagen de la experiencia:"+ id))
+      .then(async (response) => {
+        this.url = await getDownloadURL(
+          response.items.find(
+            (x) => x.name === 'experience_' + this.expLab.nombreE
+          )
+        );
+        this.expLab.nombreE;
+        console.log('edit-exp-URL:' + this.url);
+      })
+      .catch((error) =>
+        console.log(
+          'No se pudo encontrar la imagen de la experiencia:' +
+            this.expLab.nombreE
+        )
+      );
   }
 }

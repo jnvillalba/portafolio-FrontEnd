@@ -1,9 +1,10 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ExperienciaService } from 'src/app/service/experiencia.service';
 import { Experiencia } from 'src/app/model/experiencia';
 import {ref, list, getDownloadURL } from '@angular/fire/storage';
+import { HttpContext } from '@angular/common/http';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class NewExperienciaComponent implements OnInit {
   puesto: string = '';
   periodo: string = '';
   img: string = '';
+
   
   constructor(
     private sExperiencia: ExperienciaService,
@@ -26,7 +28,9 @@ export class NewExperienciaComponent implements OnInit {
     public imgService: ImageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   onCreate(): void {
     const exp = new Experiencia(
@@ -49,11 +53,13 @@ export class NewExperienciaComponent implements OnInit {
   }
 
   uploadImage($event: any) {
-    this.img = null
     const id = this.activateRouter.snapshot.params['id'];
-    const name = 'experience_' + id;
+    this.img = null
+    const name = 'experience_' + this.nombreE;
     this.imgService.uploadImage($event, name);
-    this.getImagen()
+    setTimeout(() => {
+      this.getImagen()
+    }, 3000);
   }
 
   getImagen(){
@@ -61,10 +67,10 @@ export class NewExperienciaComponent implements OnInit {
     const id = this.activateRouter.snapshot.params['id'];
     list(imgsRef)
     .then(async response => {
-      this.img = await getDownloadURL(response.items.find(x => x.name === "experience_"+id ))
+      this.img = await getDownloadURL(response.items.find(x => x.name === "experience_"+this.nombreE ))
         console.log("edit-exp-URL:" + this.img)
       }
     )
-    .catch(error => console.log("No se pudo encontrar la imagen de la experiencia:"+ id))
+    .catch(error => console.log("No se pudo encontrar la imagen de la experiencia:"+ this.nombreE))
   }
 }

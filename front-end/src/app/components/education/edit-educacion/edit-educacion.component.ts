@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { EducacionService } from 'src/app/service/educacion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
-import {ref, list, getDownloadURL } from '@angular/fire/storage';
+import { ref, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit-educacion',
@@ -12,17 +12,17 @@ import {ref, list, getDownloadURL } from '@angular/fire/storage';
 })
 export class EditEducacionComponent implements OnInit {
   educ: Educacion = null;
-  url: string = ""
+  url: string = '';
 
   constructor(
     private sEducacion: EducacionService,
     private activateRouter: ActivatedRoute,
     private router: Router,
-    private imgService: ImageService,
+    private imgService: ImageService
   ) {}
 
   ngOnInit(): void {
-    this.getImagen()
+    this.getImagen();
     const id = this.activateRouter.snapshot.params['id'];
     this.sEducacion.detail(id).subscribe(
       (data) => {
@@ -37,7 +37,7 @@ export class EditEducacionComponent implements OnInit {
 
   onUpdate(): void {
     const id = this.activateRouter.snapshot.params['id'];
-    this.educ.img = this.url
+    this.educ.img = this.url;
     this.sEducacion.update(id, this.educ).subscribe(
       (data) => {
         alert('Educacion editada');
@@ -51,23 +51,30 @@ export class EditEducacionComponent implements OnInit {
   }
 
   uploadImage($event: any) {
-    this.url = null
-    const id = this.activateRouter.snapshot.params['id'];
-    const name = "education_" + id
+    this.url = null;
+    const name = 'education_' + this.educ.nombreE;
     this.imgService.uploadImage($event, name);
-    this.getImagen()
+    this.getImagen();
   }
 
+  getImagen() {
+    const imgsRef = ref(this.imgService.storage, `imagen`);
 
-  getImagen(){
-    const imgsRef = ref(this.imgService.storage,`imagen`) 
-    const id = this.activateRouter.snapshot.params['id'];
     list(imgsRef)
-    .then(async response => {
-      this.url = await getDownloadURL(response.items.find(x => x.name === "education_"+id ))
-        console.log("edit-educ-URL:" + this.url)
-      }
-    )
-    .catch(error => console.log(error + "No se pudo encontrar la imagen de la educacion:" + id))
+      .then(async (response) => {
+        this.url = await getDownloadURL(
+          response.items.find(
+            (x) => x.name === 'education_' + this.educ.nombreE
+          )
+        );
+        console.log('edit-educ-URL:' + this.url);
+      })
+      .catch((error) =>
+        console.log(
+          error +
+            'No se pudo encontrar la imagen de la educacion:' +
+            this.educ.nombreE
+        )
+      );
   }
 }

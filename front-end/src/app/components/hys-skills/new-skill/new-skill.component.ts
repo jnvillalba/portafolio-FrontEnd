@@ -41,7 +41,7 @@ export class NewSkillComponent implements OnInit {
   uploadImage($event: any) {
     this.img = null
     const id = this.activateRouter.snapshot.params['id'];
-    const name = 'hys_' + id;
+    const name = 'hys_' + this.nombre;
     this.imgService.uploadImage($event, name);
     this.getImagen();
   }
@@ -54,10 +54,10 @@ export class NewSkillComponent implements OnInit {
         this.img = await getDownloadURL(
           response.items.find((x) => x.name === 'hys_' + id)
         );
-        console.log('edit-educ-URL:' + this.img);
+        console.log('edit-educ-URL:' + this.nombre);
       })
       .catch((error) =>
-        console.log('No se pudo encontrar la imagen de la skill de id:' + id)
+        console.log('No se pudo encontrar la imagen de la skill de id:' + this.nombre)
       );
   }
 }

@@ -45,7 +45,7 @@ export class NewEducacionComponent implements OnInit {
   uploadImage($event: any) {
     this.img = null
     const id = this.activateRouter.snapshot.params['id'];
-    const name = "education_" + id
+    const name = "education_" + this.nombreE
     this.imgService.uploadImage($event, name);
     this.getImagen()
   }
@@ -55,10 +55,10 @@ export class NewEducacionComponent implements OnInit {
     const id = this.activateRouter.snapshot.params['id'];
     list(imgsRef)
     .then(async response => {
-      this.img = await getDownloadURL(response.items.find(x => x.name === "education_"+id ))
+      this.img = await getDownloadURL(response.items.find(x => x.name === "education_"+this.nombreE ))
         console.log("edit-educ-URL:" + this.img)
       }
     )
-    .catch(error => console.log("No se pudo encontrar la imagen de la educacion:"+ id))
+    .catch(error => console.log("No se pudo encontrar la imagen de la educacion:"+ this.nombreE))
   }
 }
