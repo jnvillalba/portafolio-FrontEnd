@@ -1,4 +1,5 @@
 import { Component,ViewEncapsulation} from '@angular/core';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,8 @@ import { Component,ViewEncapsulation} from '@angular/core';
 })
 export class AppComponent {
   title = 'front-end';
+  ngOnInit() {
+    AOS.init();
+    window.addEventListener('load', AOS.refresh);
+  }
 }
