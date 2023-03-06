@@ -17,7 +17,7 @@
       *ngFor="let skill of skill"
     >
       <h3>{{ skill.nombre }}</h3>
-      <circle-progress data-aos="zoom-in"
+      <circle-progress
         [percent]="skill.porcentaje"
         [radius]="90"
         [showImage]="true"
@@ -34,7 +34,6 @@
         [animation]="true"
         [animationDuration]="300"
         [backgroundColor]="'#000000'"
-        
       >
       </circle-progress>
 

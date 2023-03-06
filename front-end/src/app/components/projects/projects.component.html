@@ -11,7 +11,7 @@
         Agregar Proyecto
       </button>
     </div>
-    <div data-aos="flip-up" *ngFor="let Proyecto of proyecto" class="col-md-4 col-sm-6">
+    <div *ngFor="let Proyecto of proyecto" class="col-md-4 col-sm-6">
       <div class="box">
         <img [src]="Proyecto.img" alt="img-proj-{{ Proyecto.id }}" />
         <div class="box-content">
