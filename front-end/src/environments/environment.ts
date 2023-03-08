@@ -3,6 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  production: false,
+  URL: 'http://localhost:8080/',
+
+  
   firebase: {
     projectId: 'jnvfrontend',
     appId: '1:448181343635:web:67918ab1caad120c2a0466',
@@ -12,8 +16,7 @@ export const environment = {
     messagingSenderId: '448181343635',
     measurementId: 'G-SLJ71YF3JG',
   },
-  production: false,
-  URL: 'http://localhost:8080/'
+ 
 };
 
 /*
