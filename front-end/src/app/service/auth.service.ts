@@ -7,20 +7,19 @@ import { LoginUsuario } from './../model/login-usuario';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  authURL = environment.URL + 'auth/'
+  authURL = environment.URL + 'auth/';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  public nuevo(nuevoUsuario: NuevoUsuario): Observable<any>{
-    return this.httpClient.post<any>(this.authURL + 'nuevo', nuevoUsuario)
+  public nuevo(nuevoUsuario: NuevoUsuario): Observable<any> {
+    return this.httpClient.post<any>(this.authURL + 'nuevo', nuevoUsuario);
   }
 
-  public login(loginUsuario: LoginUsuario): Observable<any>{
-    return this.httpClient.post<JwtDto>(this.authURL + 'login', loginUsuario)
+  public login(loginUsuario: LoginUsuario): Observable<any> {
+    console.log(this.authURL);
+    return this.httpClient.post<JwtDto>(this.authURL + 'login', loginUsuario);
   }
-
-
 }
