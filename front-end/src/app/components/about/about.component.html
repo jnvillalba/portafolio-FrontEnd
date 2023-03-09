@@ -1,42 +1,45 @@
 <div class="container">
-<div class="row">
-  <div class="card-body position-relative" >
-    <button
-      type="button"
-      class="btn  btn-circle btn-right btn-primary"
-      routerLink="/editacercade/1"
-      *ngIf="isLogged"
-    >
-      <i class="bi bi-pencil"></i>
-    </button>
-    <div class="img-profile position-absolute top-0 start-50 translate-middle">
-      <img src="{{ persona.img }}" class="animate" alt="img-profile" />
-    </div>
-    <div class="row mt-5">
-      <div class="col text-center">
-        <h2>
-          <strong>{{ persona.nombre }} {{ persona.apellido }}</strong>
-        </h2>
-        <h6>{{ persona.titulo }}</h6>
+  <div class="row">
+    <div class="card-body position-relative">
+      <button
+        type="button"
+        class="btn btn-circle btn-right btn-primary"
+        routerLink="/editacercade/1"
+        *ngIf="isLogged"
+      >
+        <i class="bi bi-pencil"></i>
+      </button>
+      <div
+        class="img-profile position-absolute top-0 start-50 translate-middle"
+      >
+        <img [src]="persona?.img" class="animate" alt="img-profile" />
       </div>
-      <div class="d-flex acercade">
+      <div class="row mt-5">
         <div class="col text-center">
-          <p>{{ persona.descripcion }}</p>
-          <div class="d-flex justify-content-between">
-            <div class="col text-center">
-              <div class="social-links">
-                <div class="social-btn flex-center">
-                  <a href="mailto:joaquinvillalba8@gmail.com">
-                    <img
-                      id="gmail"
-                      src="../../../assets/gmail-d.png"
-                      alt="gmail"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                    /> </a
-                  >
-                  <span>joaquinvillalba8@gmail.com</span>
+          <h2>
+            <strong>{{ persona?.nombre }} {{ persona?.apellido }}</strong>
+          </h2>
+          <h6>{{ persona?.titulo }}</h6>
+        </div>
+        <div class="d-flex acercade">
+          <div class="col text-center">
+            <p>{{ persona?.descripcion }}</p>
+            <div class="d-flex justify-content-between">
+              <div class="col text-center">
+                <div class="social-links">
+                  <div class="social-btn flex-center">
+                    <a href="mailto:joaquinvillalba8@gmail.com">
+                      <img
+                        id="gmail"
+                        src="../../../assets/gmail-d.png"
+                        alt="gmail"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                      />
+                    </a>
+                    <span>joaquinvillalba8@gmail.com</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -45,5 +48,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>
