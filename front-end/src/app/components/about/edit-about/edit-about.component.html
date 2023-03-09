@@ -72,7 +72,8 @@
                 [(ngModel)]="persona.descripcion"
                 required
                 rows="3"
-              > </textarea> 
+              >
+              </textarea>
             </div>
 
             <div class="form-img labels">
@@ -82,38 +83,39 @@
                 class="form-control"
                 id="img"
                 name="img"
-                [(ngModel)]="persona.img"
                 (change)="uploadImage($event)"
                 accept=".jpg, .jpeg, .png"
+                #fileInput
               />
             </div>
 
-              
-                <div class="form-img labels">
-                  <label for="imgBanner">Banner</label>
-                  <input
-                    type="file"
-                    class="form-control"
-                    id="imgBanner"
-                    name="imgBanner"
-                    [(ngModel)]="persona.imgBanner"
-                    (change)="uploadBanner($event)"
-                    accept=".jpg, .jpeg, .png"
-                  />
-                </div>
-              </div>
-              <div class="mt-5 text-center">
-                <button *ngIf="url && urlBanner; else btnDisabled" class="btn btn-success">
-                  Actualizar Perfil
-                </button>
-              </div>
-  
-              <ng-template #btnDisabled>
-                <button disabled="true" class="btn btn-outline-secondary">
-                  Actualizar Perfil
-                </button>
-              </ng-template>
-            
+            <div class="form-img labels">
+              <label for="imgBanner">Banner</label>
+              <input
+                type="file"
+                class="form-control"
+                id="imgBanner"
+                name="imgBanner"
+                (change)="uploadBanner($event)"
+                accept=".jpg, .jpeg, .png"
+                #fileInput
+              />
+            </div>
+          </div>
+          <div class="mt-5 text-center">
+            <button
+              *ngIf="url && urlBanner; else btnDisabled"
+              class="btn btn-success"
+            >
+              Actualizar Perfil
+            </button>
+          </div>
+
+          <ng-template #btnDisabled>
+            <button disabled="true" class="btn btn-outline-secondary">
+              Actualizar Perfil
+            </button>
+          </ng-template>
         </form>
       </div>
     </div>

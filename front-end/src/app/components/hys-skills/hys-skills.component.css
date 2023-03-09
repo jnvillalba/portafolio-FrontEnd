@@ -26,14 +26,11 @@
   margin-top: 10px;
 }
 
-circle-progress{
+circle-progress {
   -webkit-filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
   filter: drop-shadow(5px 5px 5px rgb(255, 255, 255));
-  
 }
-h3{
+
+h3 {
   margin-top: 5px;
 }
-
-
-
