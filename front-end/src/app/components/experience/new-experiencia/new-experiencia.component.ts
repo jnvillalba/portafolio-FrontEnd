@@ -68,7 +68,7 @@ export class NewExperienciaComponent implements OnInit {
     list(imgsRef)
     .then(async response => {
       this.img = await getDownloadURL(response.items.find(x => x.name === "experience_"+this.nombreE ))
-        console.log("edit-exp-URL:" + this.img)
+        console.log("new-exp-URL:" + this.img)
       }
     )
     .catch(error => console.log("No se pudo encontrar la imagen de la experiencia:"+ this.nombreE))

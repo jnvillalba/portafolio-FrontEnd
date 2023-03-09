@@ -66,7 +66,8 @@
                 [(ngModel)]="expLab.descripcionE"
                 required
                 rows="3"
-              > </textarea> 
+              >
+              </textarea>
             </div>
 
             <div class="form-img labels">
@@ -76,9 +77,9 @@
                 class="form-control"
                 id="img"
                 name="img"
-                [(ngModel)]="expLab.img"
                 (change)="uploadImage($event)"
                 accept=".jpg, .jpeg, .png"
+                #fileInput
               />
             </div>
           </div>
@@ -99,7 +100,3 @@
     </div>
   </div>
 </div>
-
-<!-- 
-<input type="text" [value]="url | async">
--->

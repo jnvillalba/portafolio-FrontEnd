@@ -61,7 +61,6 @@ export class EditEducacionComponent implements OnInit {
 
   getImagen() {
     const imgsRef = ref(this.imgService.storage, `imagen`);
-
     list(imgsRef)
       .then(async (response) => {
         this.url = await getDownloadURL(
@@ -69,6 +68,7 @@ export class EditEducacionComponent implements OnInit {
             (x) => x.name === 'education_' + this.educ.nombreE
           )
         );
+        this.educ.nombreE;
         console.log('edit-educ-URL:' + this.url);
       })
       .catch((error) =>
