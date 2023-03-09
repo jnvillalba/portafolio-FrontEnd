@@ -13,7 +13,7 @@ import { Storage, ref, list, getDownloadURL } from '@angular/fire/storage';
 })
 export class EditExperienciaComponent implements OnInit {
   expLab: Experiencia = null;
-  url: string = '';
+  url: string = null;
 
   constructor(
     private sExperiencia: ExperienciaService,
@@ -24,17 +24,18 @@ export class EditExperienciaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getImagen();
     const id = this.activateRouter.snapshot.params['id'];
     this.sExperiencia.detail(id).subscribe(
       (data) => {
         this.expLab = data;
+        this.getImagen();
       },
       (err) => {
         alert('Error en editar experiencia');
         this.router.navigate(['']);
       }
     );
+    
   }
 
   onUpdate(): void {
@@ -55,7 +56,6 @@ export class EditExperienciaComponent implements OnInit {
 
   uploadImage($event: any) {
     this.url = null;
-
     const name = 'experience_' + this.expLab.nombreE;
     this.imgService.uploadImage($event, name);
     setTimeout(() => {

@@ -22,11 +22,11 @@ export class EditEducacionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getImagen();
     const id = this.activateRouter.snapshot.params['id'];
     this.sEducacion.detail(id).subscribe(
       (data) => {
         this.educ = data;
+        this.getImagen();
       },
       (err) => {
         alert('Error en editar Educacion');

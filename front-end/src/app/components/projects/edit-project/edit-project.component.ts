@@ -22,11 +22,12 @@ export class EditProjectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getImagen();
+    
     const id = this.activateRouter.snapshot.params['id'];
     this.sProyecto.detail(id).subscribe(
       (data) => {
         this.proyecto = data;
+        this.getImagen();
       },
       (err) => {
         alert('Error en editar Proyecto');

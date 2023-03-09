@@ -22,11 +22,11 @@ export class EditSkillComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getImagen();
     const id = this.activatedRouter.snapshot.params['id'];
     this.skillS.detail(id).subscribe(
       (data) => {
         this.skill = data;
+        this.getImagen();
       },
       (err) => {
         alert('Error al modificar');
