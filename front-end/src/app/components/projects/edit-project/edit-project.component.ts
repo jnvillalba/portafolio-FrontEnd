@@ -22,18 +22,22 @@ export class EditProjectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
     const id = this.activateRouter.snapshot.params['id'];
-    this.sProyecto.detail(id).subscribe(
-      (data) => {
-        this.proyecto = data;
-        this.getImagen();
-      },
-      (err) => {
-        alert('Error en editar Proyecto');
-        this.router.navigate(['']);
-      }
-    );
+    if (id) {
+      this.sProyecto.detail(id).subscribe(
+        (data) => {
+          this.proyecto = data;
+          this.getImagen();
+        },
+        (err) => {
+          alert('Error en editar Proyecto');
+          this.router.navigate(['']);
+        }
+      );
+    } else {
+      alert('ID de proyecto no válido');
+      this.router.navigate(['']);
+    }
   }
 
   onUpdate(): void {
@@ -74,7 +78,7 @@ export class EditProjectComponent implements OnInit {
       .catch((error) =>
         console.log(
           error +
-            'No se pudo encontrar la imagen del proyecto de id:' +
+            'No se pudo encontrar la imagen del proyecto de id: ' +
             this.proyecto.nombreP
         )
       );

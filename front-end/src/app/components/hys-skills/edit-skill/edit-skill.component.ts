@@ -38,9 +38,9 @@ export class EditSkillComponent implements OnInit {
   onUpdate() {
     const id = this.activatedRouter.snapshot.params['id'];
     this.skill.img = this.url;
-
     this.skillS.update(id, this.skill).subscribe(
       (data) => {
+        alert('Skill editada');
         this.router.navigate(['']);
       },
       (err) => {
@@ -52,7 +52,6 @@ export class EditSkillComponent implements OnInit {
 
   uploadImage($event: any) {
     this.url = null;
-    const id = this.activatedRouter.snapshot.params['id'];
     const name = 'hys_' + this.skill.nombre;
     this.imgService.uploadImage($event, name);
     setTimeout(() => {
