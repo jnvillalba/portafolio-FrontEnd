@@ -1,7 +1,7 @@
 import { Hys } from './../../../model/hys';
 import { HysService } from './../../../service/hys.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
 import { ref, list, getDownloadURL } from '@angular/fire/storage';
 
@@ -18,7 +18,6 @@ export class NewSkillComponent implements OnInit {
   constructor(
     private skillS: HysService,
     private router: Router,
-    private activateRouter: ActivatedRoute,
     public imgService: ImageService
   ) {}
 
@@ -39,8 +38,7 @@ export class NewSkillComponent implements OnInit {
   }
 
   uploadImage($event: any) {
-    this.img = null
-    const id = this.activateRouter.snapshot.params['id'];
+    this.img = null;
     const name = 'hys_' + this.nombre;
     this.imgService.uploadImage($event, name);
     setTimeout(() => {
@@ -50,16 +48,17 @@ export class NewSkillComponent implements OnInit {
 
   getImagen() {
     const imgsRef = ref(this.imgService.storage, `imagen`);
-    const id = this.activateRouter.snapshot.params['id'];
+    const name = 'hys_' + this.nombre;
     list(imgsRef)
       .then(async (response) => {
         this.img = await getDownloadURL(
-          response.items.find((x) => x.name === 'hys_' + id)
+          response.items.find((x) => x.name === name)
         );
-        console.log('edit-hys-URL:' + this.nombre);
       })
       .catch((error) =>
-        console.log('No se pudo encontrar la imagen de la skill de id:' + this.nombre)
+        console.log(
+          'No se pudo encontrar la imagen de la skill de id:' + this.nombre
+        )
       );
   }
 }

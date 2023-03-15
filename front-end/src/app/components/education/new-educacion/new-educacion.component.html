@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-md-3">
       <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-        <img *ngIf="img"
+        <img
+          *ngIf="img"
           class="mt-5 border"
           width="150px"
           [src]="img"
@@ -65,7 +66,8 @@
               [(ngModel)]="descripcionE"
               required
               rows="3"
-            > </textarea> 
+            >
+            </textarea>
           </div>
 
           <div class="form-img labels">
@@ -75,7 +77,6 @@
               class="form-control"
               id="img"
               name="img"
-              [(ngModel)]="img"
               (change)="uploadImage($event)"
               accept=".jpg, .jpeg, .png"
             />

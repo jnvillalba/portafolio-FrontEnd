@@ -43,8 +43,7 @@ export class NewEducacionComponent implements OnInit {
   }
 
   uploadImage($event: any) {
-    this.img = null
-    const id = this.activateRouter.snapshot.params['id'];
+    this.img = null  
     const name = "education_" + this.nombreE
     this.imgService.uploadImage($event, name);
     setTimeout(() => {
@@ -54,11 +53,13 @@ export class NewEducacionComponent implements OnInit {
 
   getImagen(){
     const imgsRef = ref(this.imgService.storage,`imagen`) 
-    const id = this.activateRouter.snapshot.params['id'];
+    const name = "education_" + this.nombreE
     list(imgsRef)
-    .then(async response => {
-      this.img = await getDownloadURL(response.items.find(x => x.name === "education_"+this.nombreE ))
-        console.log("new-educ-URL:" + this.img)
+    .then(async (response) => {
+      this.img = await getDownloadURL(
+        response.items.find((x) => x.name === name)
+      );
+      console.log("new-educ-URL:" + this.img)
       }
     )
     .catch(error => console.log("No se pudo encontrar la imagen de la educacion:"+ this.nombreE))

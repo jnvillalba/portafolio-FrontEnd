@@ -3,16 +3,13 @@ import { ImageService } from 'src/app/service/image.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ExperienciaService } from 'src/app/service/experiencia.service';
 import { Experiencia } from 'src/app/model/experiencia';
-import {ref, list, getDownloadURL } from '@angular/fire/storage';
-import { HttpContext } from '@angular/common/http';
-
+import { ref, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-new-experiencia',
   templateUrl: './new-experiencia.component.html',
   styleUrls: ['./new-experiencia.component.css'],
 })
-
 export class NewExperienciaComponent implements OnInit {
   nombreE: string = '';
   descripcionE: string = '';
@@ -20,17 +17,13 @@ export class NewExperienciaComponent implements OnInit {
   periodo: string = '';
   img: string = '';
 
-  
   constructor(
     private sExperiencia: ExperienciaService,
-    private activateRouter: ActivatedRoute,
     private router: Router,
     public imgService: ImageService
   ) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   onCreate(): void {
     const exp = new Experiencia(
@@ -53,24 +46,27 @@ export class NewExperienciaComponent implements OnInit {
   }
 
   uploadImage($event: any) {
-    const id = this.activateRouter.snapshot.params['id'];
-    this.img = null
+    this.img = null;
     const name = 'experience_' + this.nombreE;
     this.imgService.uploadImage($event, name);
     setTimeout(() => {
-      this.getImagen()
+      this.getImagen();
     }, 3000);
   }
 
-  getImagen(){
-    const imgsRef = ref(this.imgService.storage,`imagen`) 
-    const id = this.activateRouter.snapshot.params['id'];
+  getImagen() {
+    const imgsRef = ref(this.imgService.storage, `imagen`);
+    const name = 'experience_' + this.nombreE;
     list(imgsRef)
-    .then(async response => {
-      this.img = await getDownloadURL(response.items.find(x => x.name === "experience_"+this.nombreE ))
-        console.log("new-exp-URL:" + this.img)
-      }
-    )
-    .catch(error => console.log("No se pudo encontrar la imagen de la experiencia:"+ this.nombreE))
+      .then(async (response) => {
+        this.img = await getDownloadURL(
+          response.items.find((x) => x.name === name)
+        );
+      })
+      .catch((error) =>
+        console.log(
+          'No se pudo encontrar la imagen de la experiencia:' + this.nombreE
+        )
+      );
   }
 }
