@@ -56,7 +56,7 @@ export class NewSkillComponent implements OnInit {
         this.img = await getDownloadURL(
           response.items.find((x) => x.name === 'hys_' + id)
         );
-        console.log('edit-educ-URL:' + this.nombre);
+        console.log('edit-hys-URL:' + this.nombre);
       })
       .catch((error) =>
         console.log('No se pudo encontrar la imagen de la skill de id:' + this.nombre)
