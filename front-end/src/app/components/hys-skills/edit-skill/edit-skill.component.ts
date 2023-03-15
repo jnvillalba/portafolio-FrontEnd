@@ -67,7 +67,6 @@ export class EditSkillComponent implements OnInit {
         this.url = await getDownloadURL(
           response.items.find((x) => x.name === 'hys_' + this.skill.nombre)
         );
-        console.log('edit-hys-URL:' + this.url);
       })
       .catch((error) =>
         console.log(

@@ -73,7 +73,6 @@ export class EditProjectComponent implements OnInit {
             (x) => x.name === 'proyecto_' + this.proyecto.nombreP
           )
         );
-        console.log('edit-proy-URL:' + this.url);
       })
       .catch((error) =>
         console.log(

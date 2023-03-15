@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PersonaService } from 'src/app/service/persona.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
-import {ref, list, getDownloadURL } from '@angular/fire/storage';
+import { ref, list, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit-about',
@@ -12,8 +12,8 @@ import {ref, list, getDownloadURL } from '@angular/fire/storage';
 })
 export class EditAboutComponent implements OnInit {
   persona: persona = null;
-  url: string = ""
-  urlBanner: string = ""
+  url: string = '';
+  urlBanner: string = '';
 
   constructor(
     private personaService: PersonaService,
@@ -23,8 +23,8 @@ export class EditAboutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getImagen()
-    this.getBanner()
+    this.getImagen();
+    this.getBanner();
     const id = this.activateRouter.snapshot.params['id'];
     this.personaService.detail(id).subscribe(
       (data) => {
@@ -39,8 +39,8 @@ export class EditAboutComponent implements OnInit {
 
   onUpdate(): void {
     const id = this.activateRouter.snapshot.params['id'];
-    this.persona.img = this.url
-    this.persona.imgBanner = this.urlBanner
+    this.persona.img = this.url;
+    this.persona.imgBanner = this.urlBanner;
     this.personaService.update(id, this.persona).subscribe(
       (data) => {
         alert('Persona editada');
@@ -54,26 +54,28 @@ export class EditAboutComponent implements OnInit {
   }
 
   uploadImage($event: any) {
-    this.borrarImagenes()
+    this.borrarImagenes();
     const id = this.activateRouter.snapshot.params['id'];
-    const name = "perfil_" + id
+    const name = 'perfil_' + id;
     this.imgService.uploadImage($event, name);
-    this.getImagen()
+    this.getImagen();
   }
 
-  getImagen(){
-    const imgsRef = ref(this.imgService.storage,`imagen`) 
+  getImagen() {
+    const imgsRef = ref(this.imgService.storage, `imagen`);
     const id = this.activateRouter.snapshot.params['id'];
     list(imgsRef)
-    .then(async response => {
-      this.url = await getDownloadURL(response.items.find(x => x.name === "perfil_"+id ))
-        console.log("edit-profile-URL:" + this.url)
-      }
-    )
-    .catch(error => console.log("No se pudo encontrar la imagen de Perfil"))
+      .then(async (response) => {
+        this.url = await getDownloadURL(
+          response.items.find((x) => x.name === 'perfil_' + id)
+        );
+      })
+      .catch((error) =>
+        console.log('No se pudo encontrar la imagen de Perfil')
+      );
   }
 
-  uploadBanner($event: any){
+  uploadBanner($event: any) {
     const name = 'banner_1';
     this.imgService.uploadImage($event, name);
     this.getBanner();
@@ -86,14 +88,14 @@ export class EditAboutComponent implements OnInit {
         this.urlBanner = await getDownloadURL(
           response.items.find((x) => x.name === 'banner_1')
         );
-        console.log('edit-banner-URL:' + this.urlBanner);
       })
-      .catch((error) => console.log('No se pudo encontrar la imagen del Banner'));
+      .catch((error) =>
+        console.log('No se pudo encontrar la imagen del Banner')
+      );
   }
 
-  borrarImagenes(){
-    this.url = null
-    this.urlBanner = null
+  borrarImagenes() {
+    this.url = null;
+    this.urlBanner = null;
   }
-
 }

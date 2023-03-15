@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Proyecto } from 'src/app/model/proyecto';
 import { ImageService } from 'src/app/service/image.service';
 import { ProyectoService } from 'src/app/service/proyecto.service';
@@ -20,7 +20,6 @@ export class NewProjectComponent implements OnInit {
 
   constructor(
     private sProyecto: ProyectoService,
-    private activateRouter: ActivatedRoute,
     private router: Router,
     public imgService: ImageService
   ) {}
@@ -54,7 +53,7 @@ export class NewProjectComponent implements OnInit {
     this.imgService.uploadImage($event, name);
     setTimeout(() => {
       this.getImagen();
-    }, 3000);
+    }, 4000);
   }
 
   getImagen() {

@@ -35,7 +35,6 @@ export class EditExperienciaComponent implements OnInit {
         this.router.navigate(['']);
       }
     );
-    
   }
 
   onUpdate(): void {
@@ -73,7 +72,6 @@ export class EditExperienciaComponent implements OnInit {
           )
         );
         this.expLab.nombreE;
-        console.log('edit-exp-URL:' + this.url);
       })
       .catch((error) =>
         console.log(

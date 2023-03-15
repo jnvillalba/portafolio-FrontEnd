@@ -69,7 +69,6 @@ export class EditEducacionComponent implements OnInit {
           )
         );
         this.educ.nombreE;
-        console.log('edit-educ-URL:' + this.url);
       })
       .catch((error) =>
         console.log(
